@@ -1,0 +1,2895 @@
+\documentclass[a4paper,12pt,twoside]{book}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{fancyhdr}
+ \usepackage{amsmath}
+ \usepackage[T1]{fontenc}
+\usepackage{tabularx,ragged2e,booktabs,caption}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{amssymb}
+\newtheorem{theorem}{Theorem}
+ \newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\textit{CONET 10 - 26}\begin{flushright}
+\end{flushright}}
+\fancyfoot[CE,CO]{\leftmark}
+\fancyfoot[LE,RO]{\thepage}
+\begin{document}
+
+
+%%%%%%%Equal weight
+
+
+\begin{table}[H]
+
+\centering
+\vfill
+\vspace{2cm}
+\caption{Mean  accuracy \textbf{All countries, equal weighted}, 1000 particles, \textbf{pacc =.03}}
+
+
+\begin{tabular}{crrrrrr}
+
+  \hline
+  
+{\color{blue}Median Accuracy} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}Abs Bias} & L4  &0.22 & 0.50 & 0.02 & 0.06 & 0.31 \\ 
+ 
+&L4*  & 0.23 & 0.52 & 0.03 & 0.07 & 0.29 \\ 
+  
+&Eu &   0.27 & 0.48 & 0.09 & 0.06 & 0.46 \\ 
+ 
+&Naive L4&     0.34 & 0.99 & 0.03 & 0.06 & 0.27 \\ 
+  
+&Naive Eu &   0.57 & 1.45 & 0.14 & 0.13 & 0.55 \\\\ 
+  
+   \hline
+   
+{\color{blue} ReAbs Bias } & L4  &0.57 & 0.63 & 0.04 & 0.63 & 0.97 \\ 
+ 
+&L4*  & 0.56 & 0.65 & 0.04 & 0.67 & 0.86 \\ 
+  
+&Eu &   
+   0.64 & 0.58 & 0.15 & 0.53 & 1.30 \\ 
+  
+&Naive L4&   
+  0.68 & 1.25 & 0.04 & 0.61 & 0.82 \\
+&Naive Eu &   1.20 & 1.76 & 0.24 & 1.21 & 1.58 \\ \\
+  
+   \hline
+{\color{blue}Mean Accuracy} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}Bias} & L4  &0.24 & 0.52 & 0.03 & 0.08 & 0.33 \\ 
+  
+&L4*  & 0.27 & 0.57 & 0.03 & 0.09 & 0.40 \\ 
+  
+  
+&Eu &   0.30 & 0.51 & 0.09 & 0.06 & 0.52 \\ 
+  
+&Naive L4&  
+  0.36 & 0.99 & 0.03 & 0.08 & 0.33 \\ 
+   
+&Naive Eu &  0.59 & 1.45 & 0.14 & 0.16 & 0.63 \\ \\
+  
+   \hline
+   
+{\color{blue} Relative Bias } & L4  &0.64 & 0.66 & 0.04 & 0.80 & 1.05 \\ 
+ 
+&L4*  & 0.71 & 0.71 & 0.05 & 0.88 & 1.22 \\ 
+  
+  
+&Eu &  
+  0.71 & 0.62 & 0.15 & 0.61 & 1.44 \\ 
+  
+ 
+&Naive L4&  
+  
+  0.78 & 1.25 & 0.04 & 0.81 & 1.02 \\ 
+  
+  
+  
+&Naive Eu &  
+ 1.34 & 1.75 & 0.24 & 1.48 & 1.89 \\ 
+ 
+\end{tabular}
+
+\end{table}
+
+
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{table}[H]
+\centering
+\caption{IQR and coverage of \textbf{All countries, equal weighted}, 1000 particles, pacc =.03}
+
+\begin{tabular}{crrrrrr}
+  \hline
+{\color{blue}CI} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}IQR Range} & L4  &0.10 & 0.15 & 0.05 & 0.04 & 0.16 \\ 
+  
+&L4*  &0.13 & 0.22 & 0.05 & 0.05 & 0.19 \\ 
+  
+&Eu &     0.19 & 0.26 & 0.16 & 0.06 & 0.26 \\ 
+ 
+&Naive L4& 0.11 & 0.17 & 0.06 & 0.05 & 0.15 \\ 
+&Naive Eu &   0.23 & 0.32 & 0.21 & 0.10 & 0.27 \\ \\
+  
+%%%%%%%%%%%%%%%%%%
+    {\color{blue}95$\%$ Range} & L4  &0.27 & 0.42 & 0.13 & 0.13 & 0.41 \\ 
+  
+    &L4*  & 0.34 & 0.59 & 0.15 & 0.15 & 0.48 \\ 
+  
+&Eu &    0.45 & 0.67 & 0.38 & 0.15 & 0.59 \\ 
+  
+&Naive L4&     0.31 & 0.51 & 0.18 & 0.16 & 0.40 \\
+ 
+&Naive Eu &   0.55 & 0.83 & 0.49 & 0.25 & 0.62 \\ \\
+ 
+   \hline
+   
+{\color{blue} IQR CR } & L4  &0.67 & 0.57 & 0.71 & 0.81 & 0.59 \\ 
+ 
+
+&L4*  &    0.64 & 0.58 & 0.63 & 0.72 & 0.63 \\ 
+ 
+ 
+&Eu &    0.58 & 0.50 & 0.60 & 0.69 & 0.52 \\ 
+ 
+  
+&Naive L4& 0.62 & 0.49 & 0.72 & 0.79 & 0.49 \\ 
+&Naive Eu &   0.53 & 0.44 & 0.55 & 0.69 & 0.44 \\ \\
+  
+ %%%%%%%%%%%%%%%%
+
+ {\color{blue} 95$\%$ CR }& L4  &0.96 & 0.94 & 0.98 & 0.99 & 0.95 \\ 
+  
+ 
+  &L4*  &   0.98 & 0.97 & 0.97 & 0.99 & 0.98 \\ 
+   
+&Eu &   0.94 & 0.90 & 0.95 & 0.98 & 0.92 \\ 
+ 
+&Naive L4&   0.94 & 0.90 & 0.97 & 0.98 & 0.90 \\
+ 
+&Naive Eu &    0.90 & 0.84 & 0.95 & 0.98 & 0.84 \\ \\
+  
+\end{tabular}
+
+\end{table}
+%%%%%%%%%%%%Weighted with population
+
+
+\begin{table}[H]
+
+\centering
+\vfill
+\vspace{2cm}
+\caption{Mean  accuracy \textbf{All countries, population weighted}, 1000 particles, \textbf{pacc =.03}}
+
+
+\begin{tabular}{crrrrrr}
+
+  \hline
+  
+{\color{blue}Median Accuracy} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}Abs Bias} & L4  &0.17 & 0.38 & 0.02 & 0.05 & 0.24 \\ 
+ 
+&L4*  & 0.17 & 0.38 & 0.02 & 0.06 & 0.22 \\ 
+  
+&Eu &   0.22 & 0.36 & 0.08 & 0.05 & 0.40 \\ 
+ 
+&Naive L4&      
+  0.25 & 0.71 & 0.02 & 0.05 & 0.22 \\ 
+&Naive Eu &  0.43 & 1.02 & 0.12 & 0.10 & 0.49 \\ \\
+   \hline
+   
+{\color{blue} ReAbs Bias } & L4  &0.48 & 0.59 & 0.03 & 0.66 & 0.63 \\ 
+  
+&L4*  &0.45 & 0.54 & 0.03 & 0.62 & 0.60 \\ 
+  
+&Eu &   
+ 0.61 & 0.50 & 0.14 & 0.55 & 1.26 \\ 
+  
+&Naive L4&   
+0.55 & 1.09 & 0.03 & 0.52 & 0.55 \\ 
+&Naive Eu &   1.06 & 1.37 & 0.21 & 1.06 & 1.59 \\ \\
+  
+   \hline
+{\color{blue}Mean Accuracy} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}Bias} & L4  &0.18 & 0.39 & 0.02 & 0.06 & 0.26 \\ 
+  
+&L4*  & 0.20 & 0.41 & 0.03 & 0.07 & 0.31 \\ 
+  
+  
+&Eu &   0.24 & 0.38 & 0.08 & 0.05 & 0.44 \\ 
+  
+   
+&Naive L4&  
+   
+  0.27 & 0.71 & 0.02 & 0.06 & 0.27 \\ 
+   
+&Naive Eu &  0.45 & 1.02 & 0.12 & 0.12 & 0.55 \\\\
+
+   \hline
+   
+{\color{blue} Relative Bias } & L4  &0.54 & 0.61 & 0.03 & 0.82 & 0.70 \\ 
+ 
+&L4*  & 0.58 & 0.59 & 0.04 & 0.80 & 0.88 \\ 
+  
+ 
+  
+&Eu &  
+ 0.67 & 0.54 & 0.14 & 0.63 & 1.37 \\ 
+
+&Naive L4&  
+  
+    0.62 & 1.09 & 0.03 & 0.69 & 0.68 \\ 
+ 
+  
+&Naive Eu &  
+    1.15 & 1.36 & 0.21 & 1.28 & 1.75 \\ 
+ 
+\end{tabular}
+
+\end{table}
+
+
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{table}[H]
+\centering
+\caption{IQR and coverage of \textbf{All countries, population weighted}, 1000 particles, pacc =.03}
+
+\begin{tabular}{crrrrrr}
+  \hline
+{\color{blue}CI} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}IQR Range} & L4  &0.08 & 0.12 & 0.04 & 0.03 & 0.13 \\ 
+  
+&L4*  &0.11 & 0.19 & 0.04 & 0.04 & 0.15 \\ 
+  
+&Eu &     0.17 & 0.24 & 0.15 & 0.05 & 0.24 \\ 
+  
+&Naive L4& 0.08 & 0.13 & 0.04 & 0.03 & 0.12 \\ 
+&Naive Eu &  0.20 & 0.29 & 0.19 & 0.08 & 0.23 \\ \\
+ 
+%%%%%%%%%%%%%%%%%%
+    {\color{blue}95$\%$ Range} & L4  &0.22 & 0.34 & 0.11 & 0.11 & 0.34 \\ 
+  
+    &L4*  & 0.29 & 0.50 & 0.12 & 0.12 & 0.40 \\ 
+  
+&Eu &   0.41 & 0.62 & 0.36 & 0.13 & 0.54 \\ 
+  
+&Naive L4&   0.23 & 0.38 & 0.13 & 0.11 & 0.32 \\ 
+ 
+&Naive Eu &   0.48 & 0.73 & 0.44 & 0.20 & 0.53 \\ \\
+  
+   \hline
+   
+{\color{blue} IQR CR } & L4  &0.65 & 0.56 & 0.66 & 0.79 & 0.60 \\ 
+  
+
+&L4*  &  0.63 & 0.58 & 0.59 & 0.69 & 0.65 \\ 
+  
+ 
+&Eu &    0.59 & 0.52 & 0.61 & 0.68 & 0.53 \\ 
+   
+&Naive L4& 0.59 & 0.47 & 0.66 & 0.76 & 0.49 \\
+&Naive Eu &  0.53 & 0.46 & 0.55 & 0.68 & 0.43 \\ \\
+  
+ %%%%%%%%%%%%%%%%
+
+ {\color{blue} 95$\%$ CR }& L4  &0.96 & 0.92 & 0.97 & 0.99 & 0.95 \\ 
+  
+ 
+  &L4*  &    0.97 & 0.97 & 0.96 & 0.99 & 0.98 \\ 
+  
+&Eu &  0.94 & 0.90 & 0.95 & 0.98 & 0.91 \\ 
+ 
+&Naive L4&    0.92 & 0.86 & 0.97 & 0.98 & 0.88 \\ 
+ 
+&Naive Eu &    0.89 & 0.84 & 0.95 & 0.98 & 0.80 \\ 
+ 
+\end{tabular}
+
+\end{table}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[H]
+
+\centering
+\vfill
+\vspace{2cm}
+\caption{Mean  accuracy \textbf{Country 1}, 1000 particles, \textbf{pacc =.03}}
+
+
+\begin{tabular}{crrrrrr}
+
+  \hline
+  
+{\color{blue}Median Accuracy} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}Abs Bias} & L4  &0.04 & 0.08 & 0.02 & 0.01 & 0.06 \\ 
+  
+&L4*  &0.04 & 0.08 & 0.02 & 0.01 & 0.05 \\ 
+ 
+&Eu &   0.09 & 0.13 & 0.07 & 0.02 & 0.12 \\ 
+   
+&Naive L4&     0.06 & 0.11 & 0.02 & 0.01 & 0.09 \\
+  
+&Naive Eu &  0.13 & 0.18 & 0.09 & 0.02 & 0.20 \\ \\
+ 
+   \hline
+   
+{\color{blue} ReAbs Bias } & L4  &0.36 & 0.53 & 0.02 & 0.68 & 0.23 \\ 
+  
+&L4*  &0.32 & 0.39 & 0.02 & 0.55 & 0.31 \\ 
+  
+&Eu &   
+  0.56 & 0.38 & 0.12 & 0.57 & 1.16 \\ 
+  
+  
+&Naive L4&   
+  0.38 & 0.85 & 0.02 & 0.41 & 0.23 \\ 
+&Naive Eu &   0.86 & 0.85 & 0.18 & 0.90 & 1.52 \\\\
+   \hline
+{\color{blue}Mean Accuracy} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}Bias} & L4  &0.04 & 0.08 & 0.02 & 0.01 & 0.06 \\ 
+ 
+&L4*  & 0.04 & 0.08 & 0.02 & 0.01 & 0.06 \\ 
+ 
+  
+&Eu &   0.09 & 0.13 & 0.07 & 0.02 & 0.13 \\ 
+   
+&Naive L4&  
+  0.06 & 0.11 & 0.02 & 0.01 & 0.09 \\
+   
+&Naive Eu &  0.13 & 0.19 & 0.09 & 0.03 & 0.21 \\ \\
+  
+   \hline
+   
+{\color{blue} Relative Bias } & L4  &0.41 & 0.52 & 0.02 & 0.83 & 0.28 \\ 
+  
+&L4*  &0.41 & 0.44 & 0.03 & 0.70 & 0.48 \\ 
+  
+ 
+  
+&Eu &  
+  0.60 & 0.41 & 0.12 & 0.65 & 1.23 \\ 
+ 
+ 
+&Naive L4&  
+  
+   0.42 & 0.84 & 0.02 & 0.55 & 0.26 \\   
+  
+  
+&Naive Eu &  
+  0.90 & 0.85 & 0.18 & 1.05 & 1.52 \\ 
+ 
+\end{tabular}
+
+\end{table}
+
+
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{table}[H]
+\centering
+\caption{IQR and coverage of \textbf{Country 1}, 1000 particles, pacc =.03}
+
+\begin{tabular}{crrrrrr}
+  \hline
+{\color{blue}CI} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}IQR Range} & L4  &0.06 & 0.09 & 0.03 & 0.03 & 0.10 \\ 
+  
+&L4*  &0.08 & 0.16 & 0.03 & 0.03 & 0.12 \\ 
+ 
+&Eu &     0.15 & 0.22 & 0.14 & 0.04 & 0.21 \\ 
+  
+&Naive L4&0.05 & 0.09 & 0.02 & 0.02 & 0.09 \\ 
+  
+&Naive Eu &  0.17 & 0.25 & 0.17 & 0.06 & 0.19 \\ \\
+  
+%%%%%%%%%%%%%%%%%%
+    {\color{blue}95$\%$ Range} & L4  &0.17 & 0.27 & 0.08 & 0.08 & 0.27 \\ 
+  
+    &L4*  & 0.23 & 0.41 & 0.09 & 0.09 & 0.33 \\ 
+ 
+&Eu &   0.38 & 0.57 & 0.34 & 0.12 & 0.50 \\ 
+  
+&Naive L4&    0.16 & 0.26 & 0.08 & 0.06 & 0.23 \\ 
+ 
+&Naive Eu &   0.41 & 0.64 & 0.40 & 0.15 & 0.45 \\ \\
+ 
+   \hline
+   
+{\color{blue} IQR CR } & L4  &0.64 & 0.56 & 0.60 & 0.78 & 0.61 \\ 
+ 
+
+&L4*  &   0.61 & 0.58 & 0.54 & 0.67 & 0.67 \\ 
+ 
+ 
+&Eu &    0.60 & 0.55 & 0.62 & 0.68 & 0.55 \\ 
+  
+&Naive L4&  0.57 & 0.45 & 0.60 & 0.72 & 0.49 \\ 
+&Naive Eu &  0.53 & 0.47 & 0.55 & 0.67 & 0.43 \\ \\
+ 
+ %%%%%%%%%%%%%%%%
+
+ {\color{blue} 95$\%$ CR }& L4  &0.95 & 0.90 & 0.96 & 0.99 & 0.94 \\ 
+
+ 
+  &L4*  &   0.97 & 0.98 & 0.95 & 0.99 & 0.98 \\ 
+  
+&Eu &   0.93 & 0.90 & 0.95 & 0.98 & 0.91 \\ 
+   
+&Naive L4&   0.91 & 0.83 & 0.96 & 0.97 & 0.86 \\ 
+ 
+&Naive Eu &   0.88 & 0.84 & 0.95 & 0.98 & 0.77 \\ 
+  
+\end{tabular}
+
+\end{table}
+
+%%%%%%%%%%%Country 2%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{table}[H]
+
+\centering
+\vfill
+\caption{Mean  accuracy \textbf{Country 2}, 1000 particles, \textbf{pacc =.03}}
+
+
+\begin{tabular}{crrrrrr}
+  \hline
+  
+{\color{blue}Median Accuracy} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}Abs Bias} & L4  & 0.06 & 0.09 & 0.02 & 0.02 & 0.09 \\ 
+  
+&L4*  &0.07 & 0.13 & 0.03 & 0.02 & 0.10 \\ 
+ 
+&Eu &  0.11 & 0.18 & 0.09 & 0.03 & 0.15 \\ 
+  
+&Naive L4&     0.08 & 0.15 & 0.03 & 0.02 & 0.12 \\ 
+  
+&Naive Eu &  0.16 & 0.26 & 0.12 & 0.04 & 0.22 \\ \\
+  
+   \hline
+   
+{\color{blue} ReAbs Bias } & L4  &0.83 & 0.92 & 0.04 & 0.63 & 1.72 \\ 
+  
+&L4*  &0.84 & 1.06 & 0.05 & 0.87 & 1.36 \\ 
+ 
+&Eu &   
+  0.86 & 0.94 & 0.16 & 0.46 & 1.87 \\ 
+   
+&Naive L4&   1.09 & 2.11 & 0.04 & 0.81 & 1.41 \\
+   
+&Naive Eu &    1.79 & 3.17 & 0.26 & 1.54 & 2.20 \\ \\
+ 
+   \hline
+{\color{blue}Mean Accuracy} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}Bias} & L4  &0.06 & 0.10 & 0.03 & 0.02 & 0.09 \\ 
+  
+&L4*  &0.08 & 0.14 & 0.03 & 0.03 & 0.11 \\ 
+  
+  
+&Eu & 0.12 & 0.18 & 0.09 & 0.03 & 0.16 \\ 
+  
+&Naive L4&  
+  0.08 & 0.15 & 0.03 & 0.02 & 0.12 \\
+  
+&Naive Eu &0.16 & 0.26 & 0.12 & 0.05 & 0.22 \\ \\
+    \\ 
+   \hline
+   
+{\color{blue} Relative Bias } & L4  &0.94 & 1.01 & 0.05 & 0.81 & 1.91 \\ 
+   
+&L4*  &1.10 & 1.16 & 0.06 & 1.14 & 2.05 \\ 
+ 
+  
+&Eu &  
+   0.96 & 1.02 & 0.16 & 0.54 & 2.12 \\ 
+  
+&Naive L4&  
+  
+1.29 & 2.13 & 0.05 & 1.10 & 1.89 \\
+ 
+  
+  
+&Naive Eu &  
+2.04 & 3.13 & 0.25 & 1.91 & 2.87 \\ 
+  
+\end{tabular}
+
+\end{table}
+
+
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{table}[H]
+\centering
+\caption{IQR and coverage of \textbf{Country 2}, 1000 particles, pacc =.03}
+
+\begin{tabular}{crrrrrr}
+  \hline
+{\color{blue}CI} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}IQR Range}& L4  &0.11 & 0.16 & 0.05 & 0.05 & 0.18 \\ 
+  
+ &L4*  &0.15 & 0.25 & 0.06 & 0.06 & 0.21 \\ 
+ 
+&Eu &     0.20 & 0.29 & 0.16 & 0.06 & 0.29 \\ 
+ 
+&Naive L4& 0.13 & 0.19 & 0.08 & 0.06 & 0.18 \\  
+  
+&Naive Eu &  0.25 & 0.35 & 0.23 & 0.12 & 0.30 \\ \\
+  
+%%%%%%%%%%%%%%%%%%
+    {\color{blue}95$\%$ Range} & L4  &0.31 & 0.46 & 0.16 & 0.16 & 0.46 \\ 
+  
+    &L4*  & 0.39 & 0.66 & 0.18 & 0.19 & 0.53 \\ 
+  
+&Eu &  0.48 & 0.71 & 0.40 & 0.16 & 0.63 \\ 
+  
+&Naive L4&   0.37 & 0.58 & 0.22 & 0.20 & 0.46 \\ 
+ 
+&Naive Eu &    0.60 & 0.89 & 0.52 & 0.29 & 0.67 \\ 
+     \\
+   \hline
+   
+{\color{blue} IQR CR } & L4  &0.68 & 0.56 & 0.77 & 0.83 & 0.58 \\ 
+  
+&L4*  & 0.66 & 0.58 & 0.71 & 0.76 & 0.61 \\ 
+  
+&Eu &   0.56 & 0.46 & 0.58 & 0.68 & 0.50 \\ 
+  
+&Naive L4&   0.64 & 0.50 & 0.78 & 0.82 & 0.46 \\ 
+  
+&Naive Eu &  0.52 & 0.41 & 0.56 & 0.74 & 0.40 \\\\ 
+
+ %%%%%%%%%%%%%%%%
+
+ {\color{blue} 95$\%$ CR } & L4  &0.97 & 0.95 & 0.99 & 0.99 & 0.96 \\ 
+ 
+ &L4*  &  0.98 & 0.95 & 0.99 & 0.99 & 0.98 \\ 
+ 
+&Eu &   0.94 & 0.89 & 0.95 & 0.99 & 0.94 \\ 
+ 
+&Naive L4&  0.94 & 0.92 & 0.98 & 0.98 & 0.91 \\ 
+ 
+&Naive Eu &     0.91 & 0.85 & 0.96 & 0.98 & 0.84 \\ 
+  
+\end{tabular}
+
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%Country 3%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{table}[H]
+
+\centering
+\vfill
+\caption{Mean  accuracy \textbf{Country 3}, 1000 particles, \textbf{pacc =.03}}
+
+
+\begin{tabular}{crrrrrr}
+  \hline
+  
+{\color{blue}Median Accuracy} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}Abs Bias}& L4  &0.06 & 0.10 & 0.03 & 0.02 & 0.11 \\ 
+ 
+ &L4*  & 0.08 & 0.14 & 0.03 & 0.02 & 0.12 \\ 
+  
+ 
+&Eu &   0.11 & 0.18 & 0.09 & 0.03 & 0.16 \\ 
+ 
+ 
+&Naive L4&      0.08 & 0.14 & 0.03 & 0.02 & 0.13 \\  
+
+&Naive Eu &     0.16 & 0.28 & 0.12 & 0.05 & 0.20 \\ 
+  \\ 
+   \hline
+   
+{\color{blue} ReAbs Bias } & L4  &0.51 & 0.44 & 0.04 & 0.59 & 0.97 \\ 
+ 
+&L4*  & 0.51 & 0.49 & 0.05 & 0.59 & 0.90 \\ 
+  
+&Eu &   
+ 0.50 & 0.41 & 0.16 & 0.56 & 0.87 \\ 
+  
+&Naive L4&   
+  0.57 & 0.79 & 0.05 & 0.62 & 0.82 \\  
+ 
+&Naive Eu &    0.94 & 1.26 & 0.29 & 1.20 & 1.01 \\  \\ 
+   \hline
+{\color{blue}Mean Accuracy} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}Bias} & L4  &0.06 & 0.10 & 0.03 & 0.02 & 0.11 \\ 
+  
+&L4*  &0.08 & 0.14 & 0.04 & 0.03 & 0.12 \\ 
+ 
+  
+&Eu &   0.12 & 0.18 & 0.09 & 0.03 & 0.17 \\ 
+ 
+  
+&Naive L4&  
+    0.08 & 0.14 & 0.03 & 0.02 & 0.13 \\ 
+
+  
+&Naive Eu &    0.17 & 0.28 & 0.13 & 0.05 & 0.21 \\ \\
+ 
+   \hline
+   
+{\color{blue} Relative Bias } & L4  &0.56 & 0.45 & 0.05 & 0.77 & 0.97 \\ 
+  
+&L4*  &0.62 & 0.52 & 0.06 & 0.79 & 1.12 \\ 
+ 
+ 
+  
+&Eu &  
+    0.55 & 0.43 & 0.16 & 0.64 & 0.98 \\ 
+  
+&Naive L4&  
+  
+  0.64 & 0.79 & 0.05 & 0.79 & 0.91 \\ 
+  
+  
+&Naive Eu &  
+  1.08 & 1.26 & 0.28 & 1.49 & 1.27 \\ 
+  
+  
+\end{tabular}
+
+\end{table}
+
+
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{table}[H]
+\centering
+\caption{IQR and coverage of \textbf{Country 3}, 1000 particles, pacc =.03}
+
+\begin{tabular}{crrrrrr}
+  \hline
+{\color{blue}CI} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}IQR Range} & L4  &0.13 & 0.18 & 0.06 & 0.05 & 0.21 \\ 
+  
+&L4*  &0.16 & 0.26 & 0.07 & 0.06 & 0.24 \\ 
+  
+&Eu &  0.20 & 0.29 & 0.18 & 0.06 & 0.29 \\ 
+  
+&Naive L4&    0.14 & 0.22 & 0.08 & 0.06 & 0.20 \\
+  
+&Naive Eu &     0.27 & 0.37 & 0.24 & 0.12 & 0.33 \\ 
+   \\ 
+%%%%%%%%%%%%%%%%%%
+    {\color{blue}95$\%$ Range} & L4  &0.34 & 0.52 & 0.17 & 0.16 & 0.51 \\ 
+  
+    &L4*  & 0.41 & 0.70 & 0.18 & 0.18 & 0.57 \\ 
+ 
+&Eu &  0.49 & 0.73 & 0.42 & 0.17 & 0.64 \\ 
+  
+&Naive L4&      0.41 & 0.67 & 0.24 & 0.21 & 0.52 \\
+ 
+&Naive Eu &     0.64 & 0.97 & 0.54 & 0.31 & 0.73 \\ 
+\\   
+   \hline
+   
+{\color{blue} IQR CR } & L4  &0.68 & 0.58 & 0.75 & 0.82 & 0.57 \\ 
+  
+&L4*  &  0.64 & 0.57 & 0.66 & 0.72 & 0.61 \\ 
+  
+&Eu &    0.58 & 0.51 & 0.60 & 0.70 & 0.50 \\ 
+  
+  
+&Naive L4& 0.66 & 0.52 & 0.77 & 0.85 & 0.51 \\ 
+ 
+&Naive Eu &  0.54 & 0.44 & 0.54 & 0.68 & 0.49 \\ \\
+  
+ %%%%%%%%%%%%%%%%
+
+ {\color{blue} 95$\%$ CR }& L4  &0.97 & 0.96 & 0.98 & 1.00 & 0.96 \\ 
+  
+  &L4*  & 0.98 & 0.98 & 0.98 & 1.00 & 0.97 \\ 
+   
+&Eu &  0.94 & 0.90 & 0.95 & 0.97 & 0.92 \\ 
+
+  
+&Naive L4&    
+  0.96 & 0.94 & 0.98 & 1.00 & 0.93 \\
+&Naive Eu &   0.92 & 0.84 & 0.94 & 0.97 & 0.92 \\ 
+\end{tabular}
+
+\end{table}
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%1 country much higher
+We now consider the case where our approach shows its superior advantage with 1 country high number of cases
+
+\begin{table}[H]
+
+\centering
+\vfill
+\vspace{2cm}
+\caption{Mean  accuracy \textbf{All countries, equal weighted}, 1000 particles, \textbf{pacc =.01}}
+
+
+\begin{tabular}{crrrrrr}
+
+  \hline
+  
+{\color{blue}Median Accuracy} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}Abs Bias} & L4  &0.22 & 0.41 & 0.03 & 0.09 & 0.35 \\ 
+  
+ 
+&L4*  & 0.23 & 0.45 & 0.03 & 0.08 & 0.38 \\ 
+  
+  
+&Eu &   0.30 & 0.28 & 0.07 & 0.04 & 0.84 \\ 
+  
+ 
+&Naive L4&     0.30 & 0.74 & 0.03 & 0.10 & 0.33 \\ 
+  
+  
+&Naive Eu &   0.56 & 1.02 & 0.16 & 0.09 & 0.99 \\ 
+  
+   \hline
+   
+{\color{blue} ReAbs Bias } & L4  &0.56 & 0.63 & 0.05 & 0.74 & 0.83 \\ 
+  
+&L4*  & 
+  0.59 & 0.66 & 0.05 & 0.72 & 0.94 \\ 
+ 
+  
+&Eu &   
+    0.74 & 0.40 & 0.10 & 0.27 & 2.20 \\ 
+ 
+&Naive L4& 0.73 & 1.23 & 0.05 & 0.85 & 0.79 \\ 
+&Naive Eu &     
+   1.34 & 1.67 & 0.24 & 0.86 & 2.58 \\ 
+  
+  \\
+   \hline
+{\color{blue}Mean Accuracy} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}Bias} & L4  &0.24 & 0.43 & 0.03 & 0.11 & 0.40 \\ 
+  
+&L4*  &0.31 & 0.48 & 0.03 & 0.10 & 0.62 \\ 
+  
+  
+&Eu &   0.33 & 0.31 & 0.07 & 0.04 & 0.89 \\ 
+  
+&Naive L4&  
+   0.32 & 0.75 & 0.04 & 0.13 & 0.38 \\ 
+   
+&Naive Eu &  0.58 & 1.02 & 0.16 & 0.10 & 1.03 \\ 
+  
+   \hline
+   
+{\color{blue} Relative Bias } & L4  &0.65 & 0.66 & 0.05 & 0.93 & 0.97 \\ 
+ 
+&L4*  &  0.82 & 0.72 & 0.05 & 0.89 & 1.60 \\ 
+   
+  
+&Eu &  
+ 0.82 & 0.46 & 0.10 & 0.32 & 2.38 \\ 
+  
+&Naive L4&  
+   0.84 & 1.25 & 0.05 & 1.13 & 0.93 \\
+  
+  
+&Naive Eu &  
+ 1.42 & 1.67 & 0.24 & 1.05 & 2.71 \\ 
+ 
+ 
+  
+\end{tabular}
+
+\end{table}
+
+
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{table}[H]
+\centering
+\caption{IQR and coverage of \textbf{All countries, equal weighted}, 1000 particles, pacc =.01}
+
+\begin{tabular}{crrrrrr}
+  \hline
+{\color{blue}CI} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}IQR Range} & L4  &0.12 & 0.16 & 0.05 & 0.05 & 0.20 \\ 
+  
+&L4*  &0.14 & 0.24 & 0.06 & 0.05 & 0.20 \\ 
+  
+&Eu &    0.15 & 0.20 & 0.14 & 0.04 & 0.21 \\ 
+ 
+&Naive L4&  0.13 & 0.21 & 0.08 & 0.07 & 0.18 \\ 
+&Naive Eu &    0.19 & 0.28 & 0.23 & 0.09 & 0.17 \\ 
+  
+%%%%%%%%%%%%%%%%%%
+    {\color{blue}95$\%$ Range} & L4  &0.30 & 0.44 & 0.15 & 0.15 & 0.48 \\ 
+ 
+    &L4*  &  0.37 & 0.64 & 0.16 & 0.15 & 0.52 \\ 
+  
+&Eu &    0.36 & 0.51 & 0.34 & 0.12 & 0.50 \\ 
+ 
+&Naive L4&      0.38 & 0.62 & 0.24 & 0.21 & 0.46 \\ 
+ 
+&Naive Eu &   0.46 & 0.70 & 0.51 & 0.22 & 0.42 \\ 
+ 
+   \hline
+   
+{\color{blue} IQR CR } & L4  &0.62 & 0.55 & 0.58 & 0.72 & 0.61 \\ 
+  
+
+&L4*  &    0.59 & 0.56 & 0.58 & 0.63 & 0.62 \\ 
+  
+ 
+&Eu &     0.61 & 0.55 & 0.66 & 0.68 & 0.55 \\ 
+  
+  
+&Naive L4&  0.60 & 0.46 & 0.67 & 0.77 & 0.49 \\ 
+&Naive Eu &  0.51 & 0.42 & 0.55 & 0.69 & 0.35 \\ 
+ 
+  
+ %%%%%%%%%%%%%%%%
+
+ {\color{blue} 95$\%$ CR }& L4  &0.96 & 0.95 & 0.97 & 0.98 & 0.96 \\ 
+  
+  &L4*  &  0.97 & 0.97 & 0.96 & 0.98 & 0.97 \\ 
+  
+&Eu &    0.95 & 0.90 & 0.97 & 0.98 & 0.93 \\ 
+ 
+&Naive L4&    
+ 0.94 & 0.91 & 0.98 & 0.99 & 0.90 \\ 
+&Naive Eu &     0.84 & 0.78 & 0.95 & 0.98 & 0.66 \\ 
+  
+\end{tabular}
+
+\end{table}
+%%%%%%%%%%%%Weighted with population
+
+
+\begin{table}[H]
+
+\centering
+\vfill
+\vspace{2cm}
+\caption{Mean  accuracy \textbf{All countries, population weighted}, 1000 particles, \textbf{pacc =.01}}
+
+
+\begin{tabular}{crrrrrr}
+
+  \hline
+  
+{\color{blue}Median Accuracy} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}Abs Bias} & L4  &0.16 & 0.30 & 0.02 & 0.05 & 0.27 \\ 
+  
+&L4*  & 0.18 & 0.34 & 0.02 & 0.04 & 0.30 \\ 
+  
+&Eu &   0.27 & 0.21 & 0.05 & 0.02 & 0.79 \\ 
+   
+&Naive L4&      
+ 0.25 & 0.71 & 0.02 & 0.04 & 0.21 \\
+&Naive Eu & 0.44 & 0.77 & 0.09 & 0.05 & 0.84 \\ 
+  
+   \hline
+   
+{\color{blue} ReAbs Bias } & L4  &0.45 & 0.34 & 0.02 & 0.39 & 1.05 \\ 
+  
+&L4*  &0.52 & 0.38 & 0.03 & 0.40 & 1.29 \\ 
+  
+&Eu &   
+ 1.11 & 0.24 & 0.07 & 0.19 & 3.96 \\ 
+ 
+  
+&Naive L4&  0.50 & 0.67 & 0.03 & 0.42 & 0.88 \\ 
+&Naive Eu &    1.39 & 0.93 & 0.14 & 0.47 & 4.01 \\ 
+  
+   \hline
+{\color{blue}Mean Accuracy} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}Bias} & L4  &0.17 & 0.32 & 0.02 & 0.06 & 0.30 \\ 
+   
+&L4*  &0.24 & 0.36 & 0.02 & 0.06 & 0.54 \\ 
+  
+  
+&Eu &    0.29 & 0.24 & 0.05 & 0.03 & 0.83 \\ 
+ 
+  
+&Naive L4&  
+   
+ 0.22 & 0.55 & 0.02 & 0.07 & 0.27 \\ 
+   
+&Naive Eu &   0.45 & 0.77 & 0.09 & 0.06 & 0.87 \\ 
+  
+   \\
+
+   \hline
+   
+{\color{blue} Relative Bias } & L4  &0.52 & 0.36 & 0.03 & 0.51 & 1.18 \\ 
+  
+&L4*  &0.84 & 0.41 & 0.03 & 0.51 & 2.40 \\ 
+  
+  
+&Eu &  
+ 1.20 & 0.27 & 0.07 & 0.22 & 4.25 \\ 
+  
+
+&Naive L4&  
+  0.58 & 0.68 & 0.03 & 0.55 & 1.05 \\  
+  
+  
+&Naive Eu &  
+    1.46 & 0.93 & 0.14 & 0.57 & 4.19 \\ 
+  
+  
+\end{tabular}
+
+\end{table}
+
+
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{table}[H]
+\centering
+\caption{IQR and coverage of \textbf{All countries, population weighted}, 1000 particles, pacc =.01}
+
+\begin{tabular}{crrrrrr}
+  \hline
+{\color{blue}CI} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}IQR Range} & L4  &0.07 & 0.10 & 0.03 & 0.03 & 0.12 \\ 
+ 
+&L4*  & 0.09 & 0.17 & 0.03 & 0.03 & 0.13 \\ 
+  
+&Eu &     0.12 & 0.17 & 0.10 & 0.03 & 0.17 \\ 
+  
+  
+&Naive L4& 0.08 & 0.12 & 0.04 & 0.03 & 0.10 \\
+&Naive Eu & 0.14 & 0.21 & 0.14 & 0.05 & 0.14 \\ 
+   
+%%%%%%%%%%%%%%%%%%
+    {\color{blue}95$\%$ Range} & L4  &0.18 & 0.29 & 0.08 & 0.08 & 0.29 \\ 
+  
+    &L4*  &  0.25 & 0.45 & 0.10 & 0.09 & 0.34 \\ 
+
+&Eu &     0.29 & 0.44 & 0.24 & 0.09 & 0.40 \\ 
+  
+&Naive L4&    0.22 & 0.37 & 0.13 & 0.11 & 0.28 \\ 
+ 
+&Naive Eu &   0.34 & 0.54 & 0.33 & 0.14 & 0.36 \\ 
+  
+   \hline
+   
+{\color{blue} IQR CR } & L4  &0.66 & 0.62 & 0.61 & 0.76 & 0.64 \\ 
+  
+
+&L4*  &  0.63 & 0.60 & 0.58 & 0.66 & 0.65 \\ 
+  
+ 
+&Eu &    0.68 & 0.62 & 0.71 & 0.74 & 0.65 \\ 
+  
+  
+&Naive L4& 0.64 & 0.55 & 0.65 & 0.77 & 0.58 \\ 
+&Naive Eu &  0.62 & 0.54 & 0.65 & 0.75 & 0.52 \\ 
+  
+  
+ %%%%%%%%%%%%%%%%
+
+ {\color{blue} 95$\%$ CR }& L4  &0.98 & 0.97 & 0.97 & 0.99 & 0.97 \\ 
+ 
+ 
+  &L4*  &     0.98 & 0.98 & 0.96 & 0.98 & 0.98 \\ 
+   
+ 
+&Eu &   0.97 & 0.94 & 0.98 & 0.99 & 0.95 \\ 
+  
+ 
+&Naive L4&   0.96 & 0.93 & 0.97 & 0.98 & 0.93 \\
+ 
+&Naive Eu &     0.91 & 0.88 & 0.97 & 0.99 & 0.81 \\ 
+  
+\end{tabular}
+
+\end{table}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[H]
+
+\centering
+\vfill
+\vspace{2cm}
+\caption{Mean  accuracy \textbf{Country 1}, 1000 particles, \textbf{pacc =.01}}
+
+
+\begin{tabular}{crrrrrr}
+
+  \hline
+  
+{\color{blue}Median Accuracy} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}Abs Bias} & L4  &0.01 & 0.02 & 0.00 & 0.00 & 0.01 \\ 
+  
+&L4*  &0.02 & 0.06 & 0.00 & 0.00 & 0.02 \\ 
+  
+  
+&Eu &  0.04 & 0.07 & 0.02 & 0.01 & 0.05 \\ 
+  
+&Naive L4&      0.01 & 0.03 & 0.00 & 0.00 & 0.01 \\  
+  
+&Naive Eu &  0.04 & 0.07 & 0.02 & 0.01 & 0.05 \\ 
+  
+ 
+   \hline
+   
+{\color{blue} ReAbs Bias } & L4  & 0.35 & 0.02 & 0.00 & 0.09 & 1.28 \\ 
+  
+  
+&L4*  &0.45 & 0.06 & 0.00 & 0.10 & 1.65 \\ 
+  
+&Eu &   
+  1.48 & 0.06 & 0.04 & 0.11 & 5.71 \\ 
+  
+&Naive L4&   
+  0.26 & 0.02 & 0.00 & 0.04 & 1.00 \\  
+&Naive Eu &   1.41 & 0.06 & 0.04 & 0.10 & 5.44 \\ 
+  
+  
+   \hline
+{\color{blue}Mean Accuracy} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}Bias} & L4  &0.01 & 0.03 & 0.00 & 0.00 & 0.02 \\ 
+  
+&L4*  &  0.03 & 0.06 & 0.00 & 0.00 & 0.03 \\ 
+  
+  
+&Eu &  0.04 & 0.07 & 0.02 & 0.01 & 0.06 \\ 
+  
+  
+&Naive L4&  
+ 0.01 & 0.03 & 0.00 & 0.00 & 0.02 \\
+   
+&Naive Eu &   0.04 & 0.07 & 0.02 & 0.01 & 0.06 \\ 
+   
+  
+   \hline
+   
+{\color{blue} Relative Bias } & L4  &0.40 & 0.02 & 0.00 & 0.15 & 1.42 \\ 
+ 
+&L4*  & 0.86 & 0.06 & 0.01 & 0.15 & 3.23 \\ 
+  
+  
+&Eu &  
+   1.58 & 0.06 & 0.03 & 0.12 & 6.12 \\ 
+  
+&Naive L4&  
+  
+  0.32 & 0.02 & 0.00 & 0.04 & 1.20 \\ 
+ 
+  
+  
+&Naive Eu &  
+  1.47 & 0.06 & 0.03 & 0.12 & 5.67 \\ 
+  
+\end{tabular}
+
+\end{table}
+
+
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{table}[H]
+\centering
+\caption{IQR and coverage of \textbf{Country 1}, 1000 particles, pacc =.01}
+
+\begin{tabular}{crrrrrr}
+  \hline
+{\color{blue}CI} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}IQR Range} & L4  &0.02 & 0.05 & 0.01 & 0.00 & 0.04 \\ 
+  
+&L4*  &0.04 & 0.10 & 0.01 & 0.01 & 0.06 \\ 
+  
+&Eu &     0.09 & 0.15 & 0.06 & 0.02 & 0.13 \\ 
+   
+&Naive L4& 0.02 & 0.04 & 0.01 & 0.00 & 0.04 \\
+  
+&Naive Eu &  0.08 & 0.14 & 0.06 & 0.02 & 0.12 \\ 
+ 
+  
+%%%%%%%%%%%%%%%%%%
+    {\color{blue}95$\%$ Range} & L4  &0.07 & 0.14 & 0.02 & 0.01 & 0.10 \\ 
+
+    &L4*  &  0.13 & 0.27 & 0.04 & 0.03 & 0.17 \\ 
+   
+&Eu &  0.22 & 0.38 & 0.15 & 0.05 & 0.31 \\ 
+  
+&Naive L4&    0.06 & 0.13 & 0.02 & 0.01 & 0.10 \\
+ 
+&Naive Eu &   0.22 & 0.37 & 0.14 & 0.05 & 0.30 \\ 
+  
+   \hline
+   
+{\color{blue} IQR CR } & L4  &0.69 & 0.68 & 0.64 & 0.80 & 0.66 \\ 
+  
+
+&L4*  &  0.66 & 0.65 & 0.59 & 0.70 & 0.69 \\ 
+  
+ 
+&Eu &    0.74 & 0.70 & 0.75 & 0.79 & 0.74 \\ 
+  
+  
+&Naive L4&   0.68 & 0.65 & 0.62 & 0.77 & 0.67 \\  
+&Naive Eu & 0.73 & 0.66 & 0.75 & 0.81 & 0.69 \\ 
+  
+ %%%%%%%%%%%%%%%%
+
+ {\color{blue} 95$\%$ CR }& L4  &0.99 & 0.99 & 0.98 & 1.00 & 0.98 \\ 
+  
+ 
+  &L4*  &    0.98 & 0.99 & 0.97 & 0.99 & 0.99 \\ 
+ 
+ 
+&Eu &     0.99 & 0.98 & 0.99 & 1.00 & 0.98 \\ 
+ 
+ 
+&Naive L4&    0.97 & 0.96 & 0.97 & 0.98 & 0.97 \\ 
+ 
+&Naive Eu &     0.99 & 0.98 & 1.00 & 1.00 & 0.97 \\ 
+  
+ 
+\end{tabular}
+
+\end{table}
+
+%%%%%%%%%%%Country 2%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{table}[H]
+
+\centering
+\vfill
+\caption{Mean  accuracy \textbf{Country 2}, 1000 particles, \textbf{pacc =.01}}
+
+
+\begin{tabular}{crrrrrr}
+  \hline
+  
+{\color{blue}Median Accuracy} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}Abs Bias} & L4  &0.08 & 0.13 & 0.04 & 0.03 & 0.14 \\ 
+  
+&L4*  &0.10 & 0.17 & 0.04 & 0.03 & 0.13 \\ 
+  
+&Eu &  0.10 & 0.14 & 0.08 & 0.03 & 0.15 \\ 
+  
+&Naive L4&      0.13 & 0.24 & 0.05 & 0.03 & 0.19 \\  
+ 
+  
+&Naive Eu &  0.24 & 0.35 & 0.18 & 0.05 & 0.39 \\ 
+  
+   \hline
+   
+{\color{blue} ReAbs Bias } & L4  &0.59 & 1.16 & 0.06 & 0.69 & 0.46 \\ 
+  
+&L4*  &0.65 & 1.19 & 0.07 & 0.93 & 0.43 \\ 
+  
+  
+&Eu &   
+ 0.40 & 0.68 & 0.14 & 0.32 & 0.45 \\ 
+ 
+  
+&Naive L4&  1.00 & 2.53 & 0.07 & 0.88 & 0.50 \\ 
+   
+&Naive Eu &    1.53 & 3.51 & 0.33 & 1.11 & 1.18 \\ 
+  
+   
+   \hline
+{\color{blue}Mean Accuracy} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}Bias} & L4  &0.09 & 0.13 & 0.04 & 0.03 & 0.14 \\ 
+  
+&L4*  & 0.10 & 0.18 & 0.05 & 0.04 & 0.14 \\ 
+  
+  
+&Eu & 0.10 & 0.14 & 0.09 & 0.03 & 0.15 \\ 
+  
+  
+&Naive L4&  
+  0.13 & 0.23 & 0.06 & 0.04 & 0.18 \\
+  
+&Naive Eu &0.24 & 0.35 & 0.18 & 0.05 & 0.38 \\ 
+  
+  \\
+   \hline
+   
+{\color{blue} Relative Bias } & L4  &0.67 & 1.22 & 0.07 & 0.86 & 0.54 \\ 
+  
+&L4*  &  0.77 & 1.30 & 0.07 & 1.15 & 0.57 \\ 
+  
+  
+&Eu &  
+   0.46 & 0.81 & 0.14 & 0.37 & 0.50 \\ 
+ 
+&Naive L4&  
+  
+1.10 & 2.57 & 0.08 & 1.19 & 0.55 \\ 
+ 
+  
+  
+&Naive Eu &  
+  1.58 & 3.51 & 0.32 & 1.31 & 1.17 \\ 
+  
+   
+  
+\end{tabular}
+
+\end{table}
+
+
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{table}[H]
+\centering
+\caption{IQR and coverage of \textbf{Country 2}, 1000 particles, pacc =.01}
+
+\begin{tabular}{crrrrrr}
+  \hline
+{\color{blue}CI} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}IQR Range}& L4  &0.15 & 0.21 & 0.08 & 0.07 & 0.27 \\ 
+  
+ &L4*  &0.18 & 0.31 & 0.08 & 0.07 & 0.27 \\ 
+ 
+&Eu &      0.18 & 0.22 & 0.18 & 0.05 & 0.25 \\ 
+ 
+ 
+&Naive L4& 0.18 & 0.28 & 0.12 & 0.10 & 0.23 \\ 
+   
+  
+&Naive Eu &    0.25 & 0.35 & 0.33 & 0.12 & 0.20 \\ 
+  
+%%%%%%%%%%%%%%%%%%
+    {\color{blue}95$\%$ Range} & L4  &0.41 & 0.57 & 0.21 & 0.21 & 0.64 \\ 
+  
+    &L4*  & 0.48 & 0.81 & 0.22 & 0.21 & 0.68 \\ 
+  
+  
+&Eu &  0.43 & 0.56 & 0.43 & 0.15 & 0.59 \\ 
+ 
+  
+&Naive L4&    0.53 & 0.84 & 0.37 & 0.32 & 0.61 \\ 
+&Naive Eu &     0.59 & 0.87 & 0.71 & 0.31 & 0.48 \\ 
+ 
+     \\
+   \hline
+   
+{\color{blue} IQR CR } & L4  &0.58 & 0.47 & 0.57 & 0.67 & 0.60 \\ 
+ 
+&L4*  &  0.55 & 0.47 & 0.57 & 0.58 & 0.59 \\ 
+  
+&Eu &   0.54 & 0.46 & 0.62 & 0.63 & 0.44 \\ 
+
+&Naive L4&  0.56 & 0.35 & 0.72 & 0.76 & 0.39 \\ 
+  
+&Naive Eu &   0.39 & 0.29 & 0.45 & 0.65 & 0.17 \\ 
+  
+ %%%%%%%%%%%%%%%%
+
+ {\color{blue} 95$\%$ CR } & L4  &0.95 & 0.92 & 0.95 & 0.99 & 0.95 \\ 
+  
+ &L4*  &   0.95 & 0.94 & 0.95 & 0.98 & 0.95 \\ 
+   
+&Eu &   0.91 & 0.86 & 0.95 & 0.97 & 0.88 \\ 
+  
+&Naive L4&  
+  0.92 & 0.84 & 0.98 & 0.99 & 0.86 \\
+&Naive Eu &     0.75 & 0.63 & 0.93 & 0.97 & 0.48 \\ 
+  
+\end{tabular}
+
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%Country 3%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{table}[H]
+
+\centering
+\vfill
+\caption{Mean  accuracy \textbf{Country 3}, 1000 particles, \textbf{pacc =.01}}
+
+
+\begin{tabular}{crrrrrr}
+  \hline
+  
+{\color{blue}Median Accuracy} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}Abs Bias}& L4  &0.09 & 0.13 & 0.04 & 0.03 & 0.15 \\ 
+  
+ &L4*  &   0.10 & 0.17 & 0.05 & 0.03 & 0.14 \\ 
+ 
+ 
+&Eu &    0.10 & 0.15 & 0.08 & 0.03 & 0.14 \\ 
+  
+&Naive L4&       
+0.12 & 0.22 & 0.05 & 0.03 & 0.19 \\
+ 
+
+&Naive Eu &    0.23 & 0.32 & 0.18 & 0.05 & 0.38 \\ 
+  
+  \\ 
+   \hline
+   
+{\color{blue} ReAbs Bias } & L4  &0.74 & 0.71 & 0.07 & 1.43 & 0.75 \\ 
+  
+&L4*  &  0.67 & 0.74 & 0.07 & 1.12 & 0.76 \\ 
+ 
+  
+&Eu &   
+ 0.35 & 0.45 & 0.13 & 0.39 & 0.44 \\ 
+  
+  
+&Naive L4&   
+
+  0.92 & 1.13 & 0.07 & 1.62 & 0.86 \\ 
+ 
+&Naive Eu &     1.08 & 1.46 & 0.37 & 1.37 & 1.13 \\ 
+   \\ 
+   \hline
+{\color{blue}Mean Accuracy} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}Bias} & L4  &0.09 & 0.13 & 0.04 & 0.04 & 0.15 \\ 
+  
+&L4*  &0.10 & 0.17 & 0.05 & 0.04 & 0.15 \\ 
+  
+  
+&Eu &  0.10 & 0.15 & 0.08 & 0.03 & 0.14 \\ 
+  
+&Naive L4&  
+     0.12 & 0.22 & 0.05 & 0.04 & 0.19 \\ 
+  
+&Naive Eu &  0.23 & 0.31 & 0.18 & 0.05 & 0.37 \\ 
+  
+  
+   \hline
+   
+{\color{blue} Relative Bias } & L4  &0.89 & 0.73 & 0.07 & 1.77 & 0.97 \\ 
+  
+&L4*  &0.82 & 0.79 & 0.07 & 1.38 & 1.02 \\ 
+ 
+  
+&Eu &  
+     0.40 & 0.50 & 0.13 & 0.46 & 0.53 \\ 
+ 
+&Naive L4&  
+  
+ 1.10 & 1.14 & 0.08 & 2.15 & 1.05 \\ 
+  
+&Naive Eu &  
+   1.21 & 1.45 & 0.37 & 1.73 & 1.29 \\ 
+  
+  
+  
+\end{tabular}
+
+\end{table}
+
+
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{table}[H]
+\centering
+\caption{IQR and coverage of \textbf{Country 3}, 1000 particles, pacc =.01}
+
+\begin{tabular}{crrrrrr}
+  \hline
+{\color{blue}CI} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}IQR Range} & L4  &0.17 & 0.22 & 0.08 & 0.08 & 0.29 \\ 
+  
+&L4*  &0.19 & 0.31 & 0.08 & 0.07 & 0.29 \\ 
+  
+&Eu &  0.18 & 0.23 & 0.19 & 0.05 & 0.25 \\ 
+  
+&Naive L4&    0.19 & 0.30 & 0.12 & 0.10 & 0.26 \\  
+  
+&Naive Eu &     0.25 & 0.35 & 0.31 & 0.12 & 0.20 \\ 
+  
+ 
+   \\ 
+%%%%%%%%%%%%%%%%%%
+    {\color{blue}95$\%$ Range} & L4  &0.44 & 0.62 & 0.22 & 0.23 & 0.69 \\ 
+  
+    &L4*  & 0.49 & 0.84 & 0.22 & 0.21 & 0.71 \\ 
+  
+&Eu &  0.44 & 0.58 & 0.43 & 0.15 & 0.59 \\ 
+  
+&Naive L4&     0.55 & 0.90 & 0.35 & 0.30 & 0.67 \\ 
+ 
+&Naive Eu &     0.59 & 0.87 & 0.68 & 0.30 & 0.49 \\ 
+  
+\\   
+   \hline
+   
+{\color{blue} IQR CR } & L4  &0.58 & 0.51 & 0.54 & 0.71 & 0.56 \\ 
+  
+&L4*  &    0.57 & 0.54 & 0.56 & 0.59 & 0.59 \\ 
+  
+&Eu &     0.55 & 0.49 & 0.63 & 0.60 & 0.47 \\ 
+  
+  
+&Naive L4&  0.56 & 0.39 & 0.68 & 0.78 & 0.40 \\ 
+&Naive Eu & 0.40 & 0.32 & 0.45 & 0.62 & 0.20 \\ 
+  
+ %%%%%%%%%%%%%%%%
+
+ {\color{blue} 95$\%$ CR }& L4  &0.95 & 0.94 & 0.97 & 0.96 & 0.95 \\ 
+  
+  &L4*  &0.96 & 0.96 & 0.96 & 0.97 & 0.96 \\ 
+  
+&Eu &  0.94 & 0.86 & 0.98 & 0.98 & 0.93 \\ 
+  
+  
+&Naive L4&    
+ 
+  0.94 & 0.92 & 0.99 & 0.98 & 0.87 \\ 
+
+&Naive Eu &  0.79 & 0.72 & 0.92 & 0.97 & 0.54 \\  
+  
+\end{tabular}
+
+\end{table}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[H]
+
+\centering
+\vfill
+\vspace{2cm}
+\caption{Mean  accuracy \textbf{All countries, equal weighted}, 1000 particles, \textbf{pacc =.01}}
+
+
+\begin{tabular}{crrrrrr}
+
+  \hline
+  
+{\color{blue}Median Accuracy} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}Abs Bias} & L4  &0.21 & 0.50 & 0.02 & 0.05 & 0.25 \\ 
+  
+ 
+&L4*  & 0.20 & 0.50 & 0.02 & 0.05 & 0.22 \\ 
+ 
+  
+&Eu &   0.24 & 0.45 & 0.07 & 0.03 & 0.40 \\ 
+   
+ 
+&Naive L4&     0.33 & 0.99 & 0.03 & 0.05 & 0.26 \\ 
+  
+&Naive Eu &   0.50 & 1.33 & 0.11 & 0.06 & 0.49 \\ 
+   \\ 
+  
+   \hline
+   
+{\color{blue} ReAbs Bias } & L4  &0.49 & 0.63 & 0.03 & 0.54 & 0.77 \\ 
+ 
+&L4*  & 
+  0.45 & 0.62 & 0.04 & 0.53 & 0.62 \\ 
+  
+&Eu &   
+   0.50 & 0.53 & 0.11 & 0.28 & 1.09 \\ 
+  
+  
+&Naive L4& 0.64 & 1.25 & 0.04 & 0.51 & 0.78 \\  
+  
+&Naive Eu &     
+   0.93 & 1.61 & 0.18 & 0.59 & 1.33 \\\\
+   \hline
+{\color{blue}Mean Accuracy} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}Bias} & L4  &0.22 & 0.52 & 0.02 & 0.07 & 0.26 \\ 
+  
+&L4*  &0.24 & 0.53 & 0.03 & 0.07 & 0.32 \\ 
+  
+  
+&Eu &   0.25 & 0.47 & 0.07 & 0.03 & 0.42 \\ 
+  
+&Naive L4&  
+   0.35 & 0.99 & 0.03 & 0.07 & 0.31 \\
+   
+&Naive Eu &  0.51 & 1.33 & 0.11 & 0.07 & 0.54 \\ \\
+  
+   \hline
+   
+{\color{blue} Relative Bias } & L4  &0.55 & 0.66 & 0.04 & 0.71 & 0.81 \\ 
+   
+&L4*  & 0.58 & 0.66 & 0.04 & 0.67 & 0.95 \\ 
+  
+  
+&Eu &  
+  0.54 & 0.57 & 0.11 & 0.32 & 1.17 \\ 
+  
+ 
+&Naive L4&  
+  
+  0.73 & 1.25 & 0.04 & 0.68 & 0.96 \\
+  
+  
+  
+&Naive Eu &  
+ 1.01 & 1.61 & 0.18 & 0.71 & 1.53 \\ 
+  
+\end{tabular}
+
+\end{table}
+
+
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{table}[H]
+\centering
+\caption{IQR and coverage of \textbf{All countries, equal weighted}, 1000 particles, pacc =.01}
+
+\begin{tabular}{crrrrrr}
+  \hline
+{\color{blue}CI} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}IQR Range} & L4  &0.09 & 0.14 & 0.04 & 0.04 & 0.15 \\ 
+  
+&L4*  &0.11 & 0.19 & 0.05 & 0.04 & 0.16 \\ 
+  
+&Eu &     0.15 & 0.22 & 0.13 & 0.04 & 0.21 \\ 
+   
+&Naive L4&  0.10 & 0.16 & 0.05 & 0.04 & 0.14 \\
+&Naive Eu &   0.17 & 0.26 & 0.18 & 0.06 & 0.18 \\ 
+ 
+%%%%%%%%%%%%%%%%%%
+    {\color{blue}95$\%$ Range} & L4  &0.25 & 0.38 & 0.12 & 0.11 & 0.38 \\ 
+  
+    &L4*  & 0.29 & 0.52 & 0.13 & 0.12 & 0.42 \\ 
+   
+&Eu &    0.36 & 0.54 & 0.31 & 0.11 & 0.49 \\ 
+  
+&Naive L4&      0.28 & 0.47 & 0.16 & 0.13 & 0.37 \\
+ 
+&Naive Eu &   0.41 & 0.65 & 0.41 & 0.16 & 0.43 \\ 
+ 
+   \hline
+   
+{\color{blue} IQR CR } & L4  &0.63 & 0.54 & 0.65 & 0.76 & 0.57 \\ 
+   
+
+&L4*  &    0.61 & 0.57 & 0.60 & 0.66 & 0.62 \\ 
+ 
+ 
+&Eu &     0.61 & 0.54 & 0.65 & 0.71 & 0.54 \\ 
+  
+&Naive L4& 0.59 & 0.47 & 0.67 & 0.75 & 0.46 \\ 
+&Naive Eu &   0.53 & 0.46 & 0.58 & 0.69 & 0.38 \\ 
+  
+  
+ %%%%%%%%%%%%%%%%
+
+ {\color{blue} 95$\%$ CR }& L4  &0.96 & 0.92 & 0.97 & 0.99 & 0.95 \\ 
+ 
+ 
+  &L4*  &   0.97 & 0.96 & 0.96 & 0.99 & 0.97 \\ 
+ 
+&Eu &    0.94 & 0.89 & 0.96 & 0.98 & 0.91 \\ 
+ 
+&Naive L4&    
+  0.93 & 0.88 & 0.97 & 0.98 & 0.88 \\ 
+&Naive Eu &    0.87 & 0.82 & 0.96 & 0.98 & 0.71 \\ 
+\end{tabular}
+
+\end{table}
+%%%%%%%%%%%%Weighted with population
+
+
+\begin{table}[H]
+
+\centering
+\vfill
+\vspace{2cm}
+\caption{Mean  accuracy \textbf{All countries, population weighted}, 1000 particles, \textbf{pacc =.01}}
+
+
+\begin{tabular}{crrrrrr}
+
+  \hline
+  
+{\color{blue}Median Accuracy} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}Abs Bias} & L4  &0.16 & 0.37 & 0.02 & 0.04 & 0.19 \\ 
+   
+&L4*  & 0.14 & 0.35 & 0.02 & 0.04 & 0.16 \\ 
+  
+&Eu &   0.19 & 0.34 & 0.06 & 0.03 & 0.35 \\ 
+  
+&Naive L4&      
+ 0.25 & 0.71 & 0.02 & 0.04 & 0.21 \\
+&Naive Eu &  0.38 & 0.94 & 0.10 & 0.05 & 0.44 \\ 
+  
+   \hline
+   
+{\color{blue} ReAbs Bias } & L4  &0.41 & 0.58 & 0.03 & 0.56 & 0.48 \\ 
+  
+&L4*  &0.35 & 0.50 & 0.03 & 0.46 & 0.39 \\ 
+  
+&Eu &   
+ 0.51 & 0.46 & 0.10 & 0.30 & 1.19 \\ 
+  
+&Naive L4&  0.52 & 1.09 & 0.03 & 0.44 & 0.51 \\ 
+&Naive Eu &   0.86 & 1.28 & 0.16 & 0.64 & 1.37 \\ 
+  
+   \hline
+{\color{blue}Mean Accuracy} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}Bias} & L4  &0.16 & 0.38 & 0.02 & 0.05 & 0.20 \\ 
+  
+&L4*  &0.17 & 0.38 & 0.02 & 0.05 & 0.24 \\ 
+ 
+  
+&Eu &    0.20 & 0.35 & 0.06 & 0.03 & 0.37 \\ 
+  
+&Naive L4&  
+   
+ 0.26 & 0.71 & 0.02 & 0.05 & 0.25 \\ 
+   
+&Naive Eu &  0.39 & 0.94 & 0.10 & 0.06 & 0.47 \\ 
+  
+   \\
+
+   \hline
+   
+{\color{blue} Relative Bias } & L4  &0.46 & 0.59 & 0.03 & 0.70 & 0.52 \\ 
+ 
+&L4*  & 0.44 & 0.54 & 0.03 & 0.57 & 0.62 \\ 
+  
+  
+&Eu &  
+ 0.54 & 0.48 & 0.10 & 0.35 & 1.22 \\ 
+ 
+
+&Naive L4&  
+  0.58 & 1.09 & 0.03 & 0.58 & 0.62 \\ 
+  
+  
+&Naive Eu &  
+     0.91 & 1.28 & 0.16 & 0.76 & 1.44 \\ 
+  
+\end{tabular}
+
+\end{table}
+
+
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{table}[H]
+\centering
+\caption{IQR and coverage of \textbf{All countries, population weighted}, 1000 particles, pacc =.01}
+
+\begin{tabular}{crrrrrr}
+  \hline
+{\color{blue}CI} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}IQR Range} & L4  &0.07 & 0.11 & 0.03 & 0.03 & 0.12 \\ 
+  
+&L4*  &0.09 & 0.16 & 0.04 & 0.03 & 0.13 \\ 
+  
+&Eu &     0.13 & 0.19 & 0.12 & 0.03 & 0.18 \\ 
+  
+&Naive L4& 0.07 & 0.12 & 0.04 & 0.03 & 0.11 \\
+&Naive Eu &  0.15 & 0.23 & 0.16 & 0.05 & 0.15 \\ 
+   
+%%%%%%%%%%%%%%%%%%
+    {\color{blue}95$\%$ Range} & L4  &0.20 & 0.31 & 0.09 & 0.09 & 0.31 \\ 
+ 
+    &L4*  &  0.24 & 0.43 & 0.10 & 0.09 & 0.34 \\ 
+  
+&Eu &   0.32 & 0.49 & 0.28 & 0.09 & 0.43 \\ 
+  
+&Naive L4&   0.21 & 0.35 & 0.11 & 0.09 & 0.29 \\  
+ 
+&Naive Eu &   0.36 & 0.57 & 0.36 & 0.13 & 0.38 \\ 
+  
+   \hline
+   
+{\color{blue} IQR CR } & L4  &0.61 & 0.54 & 0.60 & 0.73 & 0.59 \\ 
+   
+
+&L4*  &  0.60 & 0.58 & 0.56 & 0.63 & 0.63 \\ 
+ 
+ 
+&Eu &     0.61 & 0.55 & 0.64 & 0.70 & 0.55 \\ 
+  
+&Naive L4& 0.56 & 0.45 & 0.61 & 0.69 & 0.48 \\
+&Naive Eu &  0.53 & 0.47 & 0.57 & 0.66 & 0.40 \\ 
+  
+ %%%%%%%%%%%%%%%%
+
+ {\color{blue} 95$\%$ CR }& L4  &0.95 & 0.91 & 0.96 & 0.99 & 0.94 \\ 
+  
+ 
+  &L4*  &    0.97 & 0.97 & 0.95 & 0.99 & 0.97 \\ 
+ 
+&Eu &   0.93 & 0.89 & 0.95 & 0.98 & 0.90 \\ 
+ 
+&Naive L4&   0.90 & 0.84 & 0.96 & 0.97 & 0.86 \\
+ 
+&Naive Eu &     0.86 & 0.81 & 0.95 & 0.97 & 0.70 \\ 
+  
+\end{tabular}
+
+\end{table}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[H]
+
+\centering
+\vfill
+\vspace{2cm}
+\caption{Mean  accuracy \textbf{Country 1}, 1000 particles, \textbf{pacc =.01}}
+
+
+\begin{tabular}{crrrrrr}
+
+  \hline
+  
+{\color{blue}Median Accuracy} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}Abs Bias} & L4  &0.04 & 0.07 & 0.02 & 0.01 & 0.05 \\ 
+  
+&L4*  &0.03 & 0.07 & 0.02 & 0.01 & 0.05 \\ 
+  
+&Eu &  0.07 & 0.11 & 0.05 & 0.01 & 0.11 \\ 
+  
+&Naive L4&      0.06 & 0.11 & 0.02 & 0.01 & 0.09 \\ 
+  
+&Naive Eu &  0.11 & 0.16 & 0.07 & 0.02 & 0.20 \\ 
+ 
+   \hline
+   
+{\color{blue} ReAbs Bias } & L4  & 0.36 & 0.53 & 0.02 & 0.68 & 0.23 \\ 
+  
+&L4*  &0.32 & 0.39 & 0.02 & 0.55 & 0.31 \\ 
+  
+&Eu &   
+  0.56 & 0.38 & 0.12 & 0.57 & 1.16 \\ 
+  
+  
+&Naive L4&   
+  0.38 & 0.85 & 0.02 & 0.41 & 0.23 \\ 
+&Naive Eu &   0.86 & 0.85 & 0.18 & 0.90 & 1.52 \\\\
+   \hline
+{\color{blue}Mean Accuracy} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}Bias} & L4  &0.04 & 0.07 & 0.02 & 0.01 & 0.05 \\ 
+ 
+&L4*  &  0.04 & 0.07 & 0.02 & 0.01 & 0.05 \\ 
+  
+  
+&Eu &   0.07 & 0.11 & 0.06 & 0.01 & 0.11 \\ 
+  
+&Naive L4&  
+ 0.06 & 0.11 & 0.02 & 0.01 & 0.09 \\ 
+   
+&Naive Eu &  0.11 & 0.16 & 0.08 & 0.02 & 0.20 \\ 
+  
+   \hline
+   
+{\color{blue} Relative Bias } & L4  &0.35 & 0.49 & 0.02 & 0.68 & 0.19 \\ 
+   
+&L4*  &0.27 & 0.38 & 0.02 & 0.46 & 0.23 \\ 
+ 
+ 
+  
+&Eu &  
+   0.51 & 0.36 & 0.09 & 0.39 & 1.20 \\ 
+  
+&Naive L4&  
+  
+   0.38 & 0.84 & 0.02 & 0.47 & 0.21 \\
+ 
+  
+  
+&Naive Eu &  
+  0.76 & 0.83 & 0.15 & 0.82 & 1.25 \\ 
+  
+\end{tabular}
+
+\end{table}
+
+
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{table}[H]
+\centering
+\caption{IQR and coverage of \textbf{Country 1}, 1000 particles, pacc =.01}
+
+\begin{tabular}{crrrrrr}
+  \hline
+{\color{blue}CI} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}IQR Range} & L4  &0.06 & 0.09 & 0.02 & 0.02 & 0.09 \\ 
+   
+&L4*  &0.07 & 0.13 & 0.03 & 0.02 & 0.09 \\ 
+ 
+&Eu &      0.11 & 0.17 & 0.11 & 0.03 & 0.15 \\ 
+  
+&Naive L4&0.05 & 0.08 & 0.02 & 0.02 & 0.08 \\ 
+  
+&Naive Eu &  0.12 & 0.19 & 0.13 & 0.04 & 0.13 \\ 
+  
+  
+%%%%%%%%%%%%%%%%%%
+    {\color{blue}95$\%$ Range} & L4  &0.16 & 0.24 & 0.07 & 0.06 & 0.24 \\ 
+  
+    &L4*  &0.19 & 0.35 & 0.08 & 0.06 & 0.27 \\ 
+  
+&Eu &  0.29 & 0.43 & 0.26 & 0.08 & 0.38 \\ 
+ 
+&Naive L4&    0.14 & 0.23 & 0.07 & 0.05 & 0.21 \\
+ 
+&Naive Eu &   0.31 & 0.50 & 0.32 & 0.10 & 0.33 \\ 
+  
+   \hline
+   
+{\color{blue} IQR CR } & L4  &0.59 & 0.53 & 0.54 & 0.71 & 0.60 \\ 
+  
+
+&L4*  &   0.59 & 0.59 & 0.52 & 0.60 & 0.65 \\ 
+  
+ 
+&Eu &    0.61 & 0.56 & 0.63 & 0.69 & 0.56 \\ 
+  
+&Naive L4&   0.53 & 0.44 & 0.55 & 0.64 & 0.50 \\ 
+&Naive Eu & 0.53 & 0.48 & 0.57 & 0.63 & 0.42 \\ 
+ 
+ %%%%%%%%%%%%%%%%
+
+ {\color{blue} 95$\%$ CR }& L4  &0.94 & 0.89 & 0.95 & 0.98 & 0.93 \\ 
+  
+ 
+  &L4*  &    0.97 & 0.98 & 0.94 & 0.99 & 0.97 \\ 
+ 
+&Eu &    0.92 & 0.88 & 0.95 & 0.97 & 0.88 \\ 
+ 
+&Naive L4&   0.89 & 0.80 & 0.94 & 0.96 & 0.84 \\
+ 
+&Naive Eu &    0.85 & 0.80 & 0.94 & 0.97 & 0.70 \\ 
+ 
+\end{tabular}
+
+\end{table}
+
+%%%%%%%%%%%Country 2%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{table}[H]
+
+\centering
+\vfill
+\caption{Mean  accuracy \textbf{Country 2}, 1000 particles, \textbf{pacc =.01}}
+
+
+\begin{tabular}{crrrrrr}
+  \hline
+  
+{\color{blue}Median Accuracy} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}Abs Bias} & L4  & 0.06 & 0.09 & 0.02 & 0.02 & 0.09 \\ 
+  
+&L4*  &0.06 & 0.12 & 0.02 & 0.02 & 0.09 \\ 
+ 
+&Eu &  0.09 & 0.15 & 0.07 & 0.02 & 0.13 \\ 
+  
+&Naive L4&      0.08 & 0.14 & 0.03 & 0.02 & 0.12 \\
+  
+&Naive Eu &  0.15 & 0.23 & 0.10 & 0.03 & 0.24 \\ 
+ 
+   \hline
+   
+{\color{blue} ReAbs Bias } & L4  &0.69 & 0.95 & 0.04 & 0.54 & 1.24 \\ 
+ 
+&L4*  & 0.69 & 1.03 & 0.04 & 0.70 & 1.00 \\ 
+  
+&Eu &   
+  0.66 & 0.88 & 0.11 & 0.22 & 1.43 \\ 
+  
+&Naive L4&  1.06 & 2.13 & 0.04 & 0.68 & 1.40 \\
+   
+&Naive Eu &    1.40 & 2.95 & 0.19 & 0.54 & 1.91 \\ 
+   
+   \hline
+{\color{blue}Mean Accuracy} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}Bias} & L4  &0.06 & 0.09 & 0.02 & 0.02 & 0.09 \\ 
+  
+&L4*  &0.07 & 0.12 & 0.03 & 0.02 & 0.09 \\ 
+  
+  
+&Eu & 0.10 & 0.15 & 0.07 & 0.02 & 0.14 \\ 
+  
+&Naive L4&  
+  0.08 & 0.14 & 0.03 & 0.02 & 0.12 \\  
+  
+&Naive Eu &0.15 & 0.23 & 0.10 & 0.03 & 0.24 \\ 
+  \\
+   \hline
+   
+{\color{blue} Relative Bias } & L4  &0.80 & 1.02 & 0.04 & 0.72 & 1.40 \\ 
+
+&L4*  &  0.92 & 1.09 & 0.05 & 0.86 & 1.68 \\ 
+ 
+  
+&Eu &  
+    0.74 & 0.96 & 0.11 & 0.25 & 1.64 \\ 
+ 
+  
+&Naive L4&  
+  
+1.23 & 2.12 & 0.05 & 0.91 & 1.85 \\ 
+ 
+  
+  
+&Naive Eu &  
+ 1.54 & 2.93 & 0.19 & 0.65 & 2.40 \\ 
+  
+\end{tabular}
+
+\end{table}
+
+
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{table}[H]
+\centering
+\caption{IQR and coverage of \textbf{Country 2}, 1000 particles, pacc =.01}
+
+\begin{tabular}{crrrrrr}
+  \hline
+{\color{blue}CI} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}IQR Range}& L4  &0.10 & 0.15 & 0.05 & 0.05 & 0.17 \\ 
+  
+ &L4*  &0.12 & 0.21 & 0.05 & 0.05 & 0.18 \\ 
+ 
+&Eu &      0.16 & 0.24 & 0.13 & 0.04 & 0.24 \\ 
+ 
+&Naive L4& 0.12 & 0.18 & 0.07 & 0.05 & 0.16 \\ 
+  
+&Naive Eu &   0.19 & 0.29 & 0.20 & 0.07 & 0.20 \\ 
+   
+%%%%%%%%%%%%%%%%%%
+    {\color{blue}95$\%$ Range} & L4  &0.28 & 0.42 & 0.14 & 0.14 & 0.42 \\ 
+ 
+    &L4*  &  0.33 & 0.57 & 0.15 & 0.14 & 0.47 \\ 
+  
+&Eu &  0.39 & 0.58 & 0.32 & 0.12 & 0.53 \\ 
+  
+&Naive L4&   0.33 & 0.55 & 0.20 & 0.17 & 0.42 \\ 
+&Naive Eu &    0.45 & 0.70 & 0.44 & 0.18 & 0.46 \\ 
+  
+     \\
+   \hline
+   
+{\color{blue} IQR CR } & L4  &0.65 & 0.52 & 0.72 & 0.78 & 0.57 \\ 
+  
+&L4*  & 0.63 & 0.57 & 0.66 & 0.71 & 0.60 \\ 
+  
+&Eu &   0.61 & 0.53 & 0.65 & 0.73 & 0.53 \\ 
+  
+&Naive L4&  0.61 & 0.48 & 0.75 & 0.79 & 0.43 \\ 
+  
+&Naive Eu &  0.52 & 0.44 & 0.59 & 0.71 & 0.34 \\ 
+  
+ %%%%%%%%%%%%%%%%
+
+ {\color{blue} 95$\%$ CR } & L4  &0.97 & 0.93 & 0.99 & 0.99 & 0.95 \\ 
+ 
+ &L4*  &   0.97 & 0.93 & 0.98 & 0.99 & 0.98 \\ 
+   
+&Eu &   0.94 & 0.89 & 0.95 & 0.99 & 0.93 \\ 
+  
+&Naive L4&  
+  0.94 & 0.91 & 0.98 & 0.98 & 0.88 \\
+&Naive Eu &     0.87 & 0.84 & 0.96 & 0.99 & 0.69 \\ 
+\end{tabular}
+
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%Country 3%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{table}[H]
+
+\centering
+\vfill
+\caption{Mean  accuracy \textbf{Country 3}, 1000 particles, \textbf{pacc =.01}}
+
+
+\begin{tabular}{crrrrrr}
+  \hline
+  
+{\color{blue}Median Accuracy} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}Abs Bias}& L4  &0.06 & 0.10 & 0.03 & 0.02 & 0.11 \\ 
+ 
+ &L4*  &  0.07 & 0.13 & 0.03 & 0.02 & 0.11 \\ 
+  
+ 
+&Eu &   0.09 & 0.15 & 0.07 & 0.02 & 0.14 \\ 
+  
+ 
+&Naive L4&       
+  0.08 & 0.14 & 0.03 & 0.02 & 0.13 \\ 
+
+&Naive Eu &     0.15 & 0.24 & 0.10 & 0.03 & 0.24 \\ 
+  \\ 
+   \hline
+   
+{\color{blue} ReAbs Bias } & L4  &0.47 & 0.44 & 0.04 & 0.51 & 0.90 \\ 
+ 
+&L4*  &  0.44 & 0.49 & 0.05 & 0.51 & 0.70 \\ 
+  
+&Eu &   
+ 0.34 & 0.37 & 0.12 & 0.29 & 0.60 \\ 
+ 
+  
+&Naive L4&   
+ 0.52 & 0.77 & 0.05 & 0.51 & 0.74 \\  
+ 
+&Naive Eu &    0.64 & 1.07 & 0.19 & 0.55 & 0.76 \\ 
+   \\ 
+   \hline
+{\color{blue}Mean Accuracy} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}Bias} & L4  &0.06 & 0.10 & 0.03 & 0.02 & 0.11 \\ 
+  
+&L4*  &0.08 & 0.13 & 0.03 & 0.02 & 0.11 \\ 
+ 
+  
+&Eu &   0.10 & 0.15 & 0.07 & 0.02 & 0.14 \\ 
+  
+  
+&Naive L4&  
+     0.08 & 0.14 & 0.03 & 0.02 & 0.12 \\ 
+  
+&Naive Eu &  0.15 & 0.24 & 0.11 & 0.03 & 0.23 \\ 
+ 
+   \hline
+   
+{\color{blue} Relative Bias } & L4  &0.52 & 0.46 & 0.05 & 0.73 & 0.84 \\ 
+  
+&L4*  &0.55 & 0.51 & 0.06 & 0.69 & 0.93 \\ 
+  
+  
+&Eu &  
+    0.38 & 0.40 & 0.12 & 0.33 & 0.66 \\ 
+ 
+&Naive L4&  
+  
+  0.58 & 0.78 & 0.05 & 0.66 & 0.83 \\ 
+ 
+  
+&Naive Eu &  
+   0.71 & 1.07 & 0.19 & 0.65 & 0.94 \\ 
+  
+  
+\end{tabular}
+
+\end{table}
+
+
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{table}[H]
+\centering
+\caption{IQR and coverage of \textbf{Country 3}, 1000 particles, pacc =.01}
+
+\begin{tabular}{crrrrrr}
+  \hline
+{\color{blue}CI} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}IQR Range} & L4  &0.11 & 0.17 & 0.05 & 0.04 & 0.19 \\ 
+   
+&L4*  &0.14 & 0.23 & 0.06 & 0.05 & 0.21 \\ 
+  
+&Eu &  0.17 & 0.25 & 0.15 & 0.04 & 0.24 \\ 
+  
+&Naive L4&     0.13 & 0.21 & 0.07 & 0.05 & 0.18 \\
+  
+&Naive Eu &     0.20 & 0.30 & 0.21 & 0.07 & 0.22 \\ 
+ 
+   \\ 
+%%%%%%%%%%%%%%%%%%
+    {\color{blue}95$\%$ Range} & L4  &0.31 & 0.47 & 0.14 & 0.14 & 0.47 \\ 
+  
+    &L4*  & 0.36 & 0.63 & 0.16 & 0.15 & 0.52 \\ 
+  
+&Eu &  0.41 & 0.61 & 0.35 & 0.12 & 0.54 \\ 
+  
+&Naive L4&     0.37 & 0.62 & 0.21 & 0.18 & 0.47 \\ 
+ 
+&Naive Eu &     0.47 & 0.74 & 0.46 & 0.19 & 0.49 \\ 
+  
+\\   
+   \hline
+   
+{\color{blue} IQR CR } & L4  &0.65 & 0.57 & 0.68 & 0.80 & 0.55 \\ 
+
+&L4*  &    0.62 & 0.57 & 0.62 & 0.67 & 0.61 \\ 
+ 
+&Eu &     0.61 & 0.53 & 0.66 & 0.73 & 0.53 \\ 
+  
+  
+&Naive L4&  0.62 & 0.49 & 0.72 & 0.82 & 0.45 \\
+ 
+&Naive Eu & 0.54 & 0.47 & 0.57 & 0.73 & 0.38 \\ 
+ 
+ %%%%%%%%%%%%%%%%
+
+ {\color{blue} 95$\%$ CR }& L4  &0.97 & 0.95 & 0.98 & 0.99 & 0.96 \\ 
+  
+  &L4*  &0.97 & 0.97 & 0.97 & 0.99 & 0.96 \\ 
+ 
+   
+&Eu &  0.94 & 0.91 & 0.97 & 0.98 & 0.92 \\ 
+ 
+
+  
+&Naive L4&    
+ 0.95 & 0.92 & 0.98 & 1.00 & 0.91 \\ 
+&Naive Eu &   0.87 & 0.82 & 0.96 & 0.98 & 0.74 \\ 
+  
+\end{tabular}
+
+\end{table}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[H]
+
+\centering
+\vfill
+\vspace{2cm}
+\caption{Mean  accuracy \textbf{All countries, equal weighted}, 1000 particles, \textbf{pacc =.03}}
+
+
+\begin{tabular}{crrrrrr}
+
+  \hline
+  
+{\color{blue}Median Accuracy} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}Abs Bias} & L4  &0.24 & 0.41 & 0.03 & 0.09 & 0.41 \\ 
+ 
+ 
+&L4*  &  0.29 & 0.48 & 0.03 & 0.18 & 0.46 \\ 
+  
+  
+&Eu &   0.40 & 0.31 & 0.09 & 0.05 & 1.14 \\ 
+  
+ 
+&Naive L4&    0.31 & 0.75 & 0.03 & 0.10 & 0.37 \\ 
+  
+&Naive Eu &   0.63 & 1.11 & 0.18 & 0.14 & 1.09 \\ 
+   
+   \\ 
+  
+   \hline
+   
+{\color{blue} ReAbs Bias } & L4  &0.62 & 0.63 & 0.05 & 0.82 & 1.00 \\ 
+  
+&L4*  & 
+  0.78 & 0.72 & 0.05 & 1.18 & 1.19 \\ 
+  
+  
+&Eu &   
+   0.99 & 0.45 & 0.14 & 0.43 & 2.95 \\ 
+ 
+&Naive L4& 0.79 & 1.26 & 0.05 & 0.94 & 0.90 \\  
+  
+&Naive Eu &     
+    1.60 & 1.80 & 0.28 & 1.33 & 2.97 \\ 
+  
+  \\
+   \hline
+{\color{blue}Mean Accuracy} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}Bias} & L4  &0.27 & 0.42 & 0.03 & 0.12 & 0.49 \\ 
+ 
+&L4*  & 0.39 & 0.51 & 0.04 & 0.31 & 0.70 \\ 
+  
+  
+&Eu &   0.44 & 0.35 & 0.09 & 0.06 & 1.27 \\ 
+  
+&Naive L4&  
+  0.34 & 0.77 & 0.04 & 0.13 & 0.42 \\ 
+   
+&Naive Eu &  0.66 & 1.12 & 0.18 & 0.17 & 1.18 \\ 
+  
+  
+   \hline
+   
+{\color{blue} Relative Bias } & L4  &0.74 & 0.65 & 0.05 & 1.03 & 1.21 \\ 
+ 
+&L4*  &  1.13 & 0.78 & 0.06 & 1.84 & 1.84 \\ 
+ 
+  
+&Eu &  
+   1.11 & 0.52 & 0.14 & 0.50 & 3.29 \\ 
+  
+&Naive L4&  
+ 0.91 & 1.28 & 0.05 & 1.25 & 1.06 \\ 
+ 
+  
+  
+&Naive Eu &  
+ 1.75 & 1.79 & 0.28 & 1.68 & 3.23 \\ 
+  
+  
+\end{tabular}
+
+\end{table}
+
+
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{table}[H]
+\centering
+\caption{IQR and coverage of \textbf{All countries, equal weighted}, 1000 particles, pacc =.03}
+
+\begin{tabular}{crrrrrr}
+  \hline
+{\color{blue}CI} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}IQR Range} & L4  &0.12 & 0.17 & 0.06 & 0.06 & 0.21 \\ 
+
+&L4*  &  0.16 & 0.27 & 0.06 & 0.06 & 0.23 \\ 
+  
+&Eu &     0.18 & 0.24 & 0.17 & 0.06 & 0.25 \\ 
+  
+&Naive L4&  0.14 & 0.22 & 0.09 & 0.07 & 0.19 \\ 
+&Naive Eu &   0.27 & 0.35 & 0.27 & 0.14 & 0.31 \\ 
+  
+%%%%%%%%%%%%%%%%%%
+    {\color{blue}95$\%$ Range} & L4  &0.33 & 0.48 & 0.16 & 0.17 & 0.50 \\ 
+  
+    &L4*  &0.41 & 0.71 & 0.18 & 0.18 & 0.57 \\ 
+  
+&Eu &    0.44 & 0.61 & 0.41 & 0.16 & 0.58 \\ 
+  
+&Naive L4&      0.42 & 0.68 & 0.26 & 0.24 & 0.50 \\ 
+ 
+&Naive Eu &   0.65 & 0.93 & 0.60 & 0.36 & 0.69 \\ 
+  
+   \hline
+   
+{\color{blue} IQR CR } & L4  &0.65 & 0.57 & 0.65 & 0.76 & 0.61 \\ 
+  
+
+&L4*  &    0.62 & 0.56 & 0.60 & 0.68 & 0.63 \\ 
+ 
+ 
+ 
+&Eu &      0.59 & 0.53 & 0.62 & 0.68 & 0.53 \\ 
+  
+  
+&Naive L4& 0.63 & 0.49 & 0.73 & 0.82 & 0.51 \\
+&Naive Eu &   0.52 & 0.42 & 0.54 & 0.70 & 0.43 \\ 
+   
+  
+ %%%%%%%%%%%%%%%%
+
+ {\color{blue} 95$\%$ CR }& L4  &0.97 & 0.96 & 0.97 & 0.99 & 0.96 \\ 
+  
+  &L4*  &   0.97 & 0.97 & 0.96 & 0.98 & 0.97 \\ 
+  
+ 
+&Eu &   0.95 & 0.91 & 0.97 & 0.99 & 0.94 \\ 
+   
+ 
+&Naive L4&    
+ 0.95 & 0.92 & 0.99 & 0.99 & 0.91 \\
+&Naive Eu &    0.91 & 0.82 & 0.95 & 0.98 & 0.87 \\ 
+  
+\end{tabular}
+
+\end{table}
+%%%%%%%%%%%%Weighted with population
+
+
+\begin{table}[H]
+
+\centering
+\vfill
+\vspace{2cm}
+\caption{Mean  accuracy \textbf{All countries, population weighted}, 1000 particles, \textbf{pacc =.03}}
+
+
+\begin{tabular}{crrrrrr}
+
+  \hline
+  
+{\color{blue}Median Accuracy} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}Abs Bias} & L4  &0.17 & 0.30 & 0.02 & 0.05 & 0.31 \\ 
+  
+&L4*  & 0.23 & 0.37 & 0.02 & 0.13 & 0.38 \\ 
+  
+&Eu &   0.36 & 0.25 & 0.07 & 0.04 & 1.08 \\ 
+  
+&Naive L4&      
+  0.22 & 0.55 & 0.02 & 0.05 & 0.25 \\ 
+&Naive Eu &  0.50 & 0.85 & 0.12 & 0.08 & 0.95 \\ 
+ 
+   \hline
+   
+{\color{blue} ReAbs Bias } & L4  &0.52 & 0.34 & 0.03 & 0.44 & 1.27 \\ 
+  
+&L4*  &0.81 & 0.42 & 0.03 & 1.14 & 1.65 \\ 
+ 
+&Eu &   
+  1.53 & 0.28 & 0.10 & 0.37 & 5.38 \\ 
+  
+&Naive L4&  0.54 & 0.69 & 0.03 & 0.47 & 0.98 \\ 
+&Naive Eu &   1.68 & 1.02 & 0.18 & 0.86 & 4.69 \\ 
+  
+   \hline
+{\color{blue}Mean Accuracy} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}Bias} & L4  &0.19 & 0.31 & 0.02 & 0.06 & 0.38 \\ 
+  
+&L4*  &0.32 & 0.40 & 0.02 & 0.25 & 0.61 \\ 
+  
+  
+&Eu &   0.40 & 0.28 & 0.07 & 0.04 & 1.20 \\ 
+ 
+  
+&Naive L4&  
+   
+0.24 & 0.56 & 0.02 & 0.07 & 0.30 \\ 
+   
+&Naive Eu &  0.53 & 0.85 & 0.12 & 0.11 & 1.04 \\ 
+  
+  
+   \\
+
+   \hline
+   
+{\color{blue} Relative Bias } & L4  &0.64 & 0.36 & 0.03 & 0.57 & 1.59 \\ 
+  
+&L4*  & 1.35 & 0.45 & 0.04 & 2.15 & 2.75 \\ 
+  
+  
+&Eu &  
+ 1.70 & 0.32 & 0.10 & 0.43 & 5.96 \\ 
+ 
+&Naive L4&  
+  0.64 & 0.71 & 0.03 & 0.62 & 1.19 \\ 
+
+  
+&Naive Eu &  
+     1.84 & 1.01 & 0.17 & 1.06 & 5.10 \\ 
+  
+\end{tabular}
+
+\end{table}
+
+
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{table}[H]
+\centering
+\caption{IQR and coverage of \textbf{All countries, population weighted}, 1000 particles, pacc =.01}
+
+\begin{tabular}{crrrrrr}
+  \hline
+{\color{blue}CI} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}IQR Range} & L4  &0.08 & 0.11 & 0.03 & 0.03 & 0.13 \\ 
+ 
+&L4*  & 0.11 & 0.21 & 0.04 & 0.04 & 0.15 \\ 
+  
+&Eu &    0.16 & 0.23 & 0.13 & 0.05 & 0.23 \\ 
+ 
+&Naive L4&  0.08 & 0.13 & 0.05 & 0.04 & 0.11 \\ 
+&Naive Eu &  0.20 & 0.29 & 0.18 & 0.09 & 0.25 \\ 
+ 
+%%%%%%%%%%%%%%%%%%
+    {\color{blue}95$\%$ Range} & L4  &0.21 & 0.32 & 0.10 & 0.10 & 0.31 \\ 
+  
+    &L4*  &  0.29 & 0.54 & 0.12 & 0.12 & 0.40 \\ 
+ 
+&Eu &    0.40 & 0.60 & 0.33 & 0.14 & 0.54 \\ 
+ 
+&Naive L4&   0.24 & 0.40 & 0.14 & 0.13 & 0.30 \\  
+ 
+&Naive Eu &    0.50 & 0.76 & 0.42 & 0.24 & 0.59 \\ 
+  
+   \hline
+   
+{\color{blue} IQR CR } & L4  &0.69 & 0.63 & 0.69 & 0.80 & 0.64 \\ 
+ 
+
+&L4*  &   0.65 & 0.59 & 0.63 & 0.73 & 0.66 \\ 
+ 
+ 
+&Eu &     0.63 & 0.57 & 0.65 & 0.72 & 0.59 \\ 
+  
+  
+&Naive L4& 0.68 & 0.58 & 0.72 & 0.84 & 0.59 \\ 
+&Naive Eu &  0.60 & 0.51 & 0.61 & 0.74 & 0.53 \\ 
+  
+ %%%%%%%%%%%%%%%%
+
+ {\color{blue} 95$\%$ CR }& L4  &0.98 & 0.97 & 0.98 & 0.99 & 0.97 \\ 
+  
+ 
+  &L4*  &    0.98 & 0.98 & 0.97 & 0.99 & 0.98 \\ 
+ 
+&Eu &    0.97 & 0.95 & 0.98 & 0.99 & 0.96 \\ 
+  
+&Naive L4&   0.97 & 0.94 & 0.99 & 0.99 & 0.94 \\ 
+ 
+&Naive Eu &     0.94 & 0.90 & 0.97 & 0.99 & 0.92 \\ 
+ 
+\end{tabular}
+
+\end{table}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[H]
+
+\centering
+\vfill
+\vspace{2cm}
+\caption{Mean  accuracy \textbf{Country 1}, 1000 particles, \textbf{pacc =.03}}
+
+
+\begin{tabular}{crrrrrr}
+
+  \hline
+  
+{\color{blue}Median Accuracy} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}Abs Bias} & L4  &0.01 & 0.03 & 0.00 & 0.00 & 0.02 \\ 
+  
+&L4*  &0.03 & 0.09 & 0.01 & 0.00 & 0.03 \\ 
+  
+&Eu &  0.06 & 0.11 & 0.04 & 0.02 & 0.09 \\ 
+  
+&Naive L4&       0.01 & 0.03 & 0.00 & 0.00 & 0.02 \\ 
+  
+&Naive Eu & 0.06 & 0.11 & 0.05 & 0.02 & 0.09 \\ 
+ 
+   \hline
+   
+{\color{blue} ReAbs Bias } & L4  &0.43 & 0.03 & 0.01 & 0.12 & 1.57 \\ 
+  
+&L4*  &0.84 & 0.09 & 0.01 & 1.13 & 2.14 \\ 
+  
+&Eu &   
+  2.07 & 0.09 & 0.07 & 0.32 & 7.81 \\ 
+ 
+&Naive L4&   
+ 0.29 & 0.03 & 0.00 & 0.04 & 1.10 \\ 
+  
+&Naive Eu &   1.75 & 0.10 & 0.07 & 0.40 & 6.41 \\ 
+  
+   \hline
+{\color{blue}Mean Accuracy} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}Bias} & L4  &0.01 & 0.03 & 0.00 & 0.00 & 0.02 \\ 
+  
+&L4*  &  0.04 & 0.09 & 0.01 & 0.01 & 0.04 \\ 
+  
+  
+&Eu &   0.07 & 0.11 & 0.04 & 0.02 & 0.10 \\ 
+  
+  
+&Naive L4&  
+0.01 & 0.03 & 0.00 & 0.00 & 0.02 \\
+   
+&Naive Eu &   0.07 & 0.11 & 0.05 & 0.02 & 0.10 \\ 
+  
+   \hline
+   
+{\color{blue} Relative Bias } & L4  &0.55 & 0.03 & 0.01 & 0.18 & 1.99 \\ 
+  
+&L4*  &1.58 & 0.09 & 0.02 & 2.50 & 3.69 \\ 
+  
+ 
+  
+&Eu &  
+   2.29 & 0.10 & 0.07 & 0.36 & 8.63 \\ 
+  
+&Naive L4&  
+  
+   0.36 & 0.03 & 0.00 & 0.05 & 1.36 \\ 
+  
+  
+&Naive Eu &  
+  1.91 & 0.10 & 0.07 & 0.46 & 6.99 \\ 
+  
+  
+  
+\end{tabular}
+
+\end{table}
+
+
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{table}[H]
+\centering
+\caption{IQR and coverage of \textbf{Country 1}, 1000 particles, pacc =.03}
+
+\begin{tabular}{crrrrrr}
+  \hline
+{\color{blue}CI} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}IQR Range} & L4  &0.03 & 0.05 & 0.01 & 0.01 & 0.04 \\ 
+  
+&L4*  &0.06 & 0.14 & 0.02 & 0.01 & 0.08 \\ 
+  
+&Eu &     0.14 & 0.22 & 0.09 & 0.04 & 0.21 \\ 
+  
+&Naive L4&0.02 & 0.05 & 0.01 & 0.00 & 0.04 \\ 
+  
+&Naive Eu &  0.14 & 0.22 & 0.09 & 0.05 & 0.21 \\ 
+  
+  
+%%%%%%%%%%%%%%%%%%
+    {\color{blue}95$\%$ Range} & L4  &0.09 & 0.17 & 0.03 & 0.03 & 0.12 \\ 
+  
+    &L4*  &0.18 & 0.36 & 0.06 & 0.05 & 0.23 \\ 
+  
+&Eu &  0.36 & 0.59 & 0.25 & 0.11 & 0.49 \\ 
+  
+&Naive L4&   0.07 & 0.14 & 0.02 & 0.02 & 0.11 \\ 
+ 
+&Naive Eu &   0.36 & 0.59 & 0.25 & 0.11 & 0.49 \\ 
+  
+   \hline
+   
+{\color{blue} IQR CR } & L4  &0.73 & 0.69 & 0.73 & 0.85 & 0.67 \\ 
+ 
+
+&L4*  &   0.69 & 0.64 & 0.65 & 0.79 & 0.68 \\ 
+  
+ 
+&Eu &   0.68 & 0.62 & 0.68 & 0.77 & 0.66 \\ 
+ 
+&Naive L4&   0.73 & 0.67 & 0.71 & 0.86 & 0.68 \\
+&Naive Eu &  0.68 & 0.61 & 0.67 & 0.78 & 0.64 \\ 
+   
+ %%%%%%%%%%%%%%%%
+
+ {\color{blue} 95$\%$ CR }& L4  &0.99 & 0.99 & 0.99 & 1.00 & 0.97 \\ 
+ 
+ 
+  &L4*  &    0.99 & 0.99 & 0.97 & 0.99 & 0.99 \\ 
+ 
+ 
+&Eu &     0.99 & 0.98 & 0.99 & 1.00 & 0.98 \\ 
+  
+&Naive L4&     0.98 & 0.97 & 0.99 & 0.99 & 0.97 \\ 
+ 
+&Naive Eu &    0.98 & 0.98 & 0.99 & 0.99 & 0.98 \\ 
+
+\end{tabular}
+
+\end{table}
+
+%%%%%%%%%%%Country 2%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{table}[H]
+
+\centering
+\vfill
+\caption{Mean  accuracy \textbf{Country 2}, 1000 particles, \textbf{pacc =.03}}
+
+
+\begin{tabular}{crrrrrr}
+  \hline
+  
+{\color{blue}Median Accuracy} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}Abs Bias} & L4  & 0.09 & 0.13 & 0.04 & 0.03 & 0.14 \\ 
+  
+&L4*  &0.10 & 0.18 & 0.04 & 0.03 & 0.14 \\ 
+   
+&Eu &  0.11 & 0.15 & 0.10 & 0.03 & 0.15 \\ 
+  
+&Naive L4&      0.13 & 0.24 & 0.05 & 0.03 & 0.19 \\
+  
+&Naive Eu & 0.24 & 0.36 & 0.19 & 0.07 & 0.33 \\ 
+ 
+   \hline
+   
+{\color{blue} ReAbs Bias } & L4  &0.63 & 1.15 & 0.07 & 0.76 & 0.56 \\ 
+   
+&L4*  &0.71 & 1.30 & 0.07 & 0.96 & 0.51 \\ 
+  
+&Eu &   
+  0.47 & 0.77 & 0.17 & 0.44 & 0.49 \\ 
+  
+&Naive L4&   1.08 & 2.65 & 0.07 & 1.06 & 0.53 \\
+   
+&Naive Eu &    1.71 & 3.68 & 0.35 & 1.62 & 1.19 \\ 
+ 
+   \hline
+{\color{blue}Mean Accuracy} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}Bias} & L4  &0.09 & 0.13 & 0.05 & 0.03 & 0.15 \\ 
+ 
+&L4*  & 0.10 & 0.19 & 0.05 & 0.04 & 0.15 \\ 
+  
+  
+&Eu & 0.11 & 0.15 & 0.10 & 0.03 & 0.15 \\ 
+ 
+&Naive L4&  
+  0.13 & 0.24 & 0.06 & 0.04 & 0.18 \\ 
+  
+&Naive Eu & 0.24 & 0.36 & 0.19 & 0.08 & 0.31 \\ 
+  
+   \hline
+   
+{\color{blue} Relative Bias } & L4  &0.71 & 1.20 & 0.07 & 0.96 & 0.60 \\ 
+  
+&L4*  & 0.85 & 1.44 & 0.07 & 1.21 & 0.67 \\ 
+ 
+  
+&Eu &  
+     0.55 & 0.92 & 0.18 & 0.51 & 0.60 \\ 
+ 
+&Naive L4&  
+  
+1.19 & 2.69 & 0.08 & 1.40 & 0.60 \\
+  
+  
+&Naive Eu &  
+  1.82 & 3.64 & 0.34 & 2.08 & 1.22 \\ 
+  
+\end{tabular}
+
+\end{table}
+
+
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{table}[H]
+\centering
+\caption{IQR and coverage of \textbf{Country 2}, 1000 particles, pacc =.01}
+
+\begin{tabular}{crrrrrr}
+  \hline
+{\color{blue}CI} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}IQR Range}& L4  &0.17 & 0.22 & 0.08 & 0.08 & 0.29 \\ 
+  
+ &L4*  &0.20 & 0.33 & 0.09 & 0.08 & 0.30 \\ 
+  
+&Eu &      0.20 & 0.24 & 0.21 & 0.07 & 0.27 \\ 
+  
+&Naive L4& 0.20 & 0.30 & 0.13 & 0.11 & 0.25 \\ 
+  
+&Naive Eu &   0.32 & 0.40 & 0.36 & 0.19 & 0.33 \\ 
+  
+%%%%%%%%%%%%%%%%%%
+    {\color{blue}95$\%$ Range} & L4  &0.44 & 0.61 & 0.23 & 0.24 & 0.68 \\ 
+ 
+    &L4*  &   0.52 & 0.87 & 0.24 & 0.24 & 0.72 \\ 
+ 
+&Eu &   0.48 & 0.62 & 0.48 & 0.18 & 0.63 \\ 
+ 
+&Naive L4&   0.58 & 0.91 & 0.39 & 0.36 & 0.67 \\
+&Naive Eu &     0.77 & 1.06 & 0.78 & 0.49 & 0.74 \\ 
+  
+     \\
+   \hline
+   
+{\color{blue} IQR CR } & L4  &0.60 & 0.50 & 0.62 & 0.71 & 0.58 \\ 
+  
+&L4*  & 0.58 & 0.46 & 0.61 & 0.62 & 0.62 \\ 
+   
+&Eu &   0.54 & 0.46 & 0.59 & 0.64 & 0.45 \\ 
+ 
+&Naive L4&  0.58 & 0.37 & 0.75 & 0.78 & 0.40 \\
+  
+&Naive Eu &   0.44 & 0.32 & 0.48 & 0.69 & 0.27 \\ 
+  
+ %%%%%%%%%%%%%%%%
+
+ {\color{blue} 95$\%$ CR } & L4  &0.96 & 0.93 & 0.96 & 0.99 & 0.95 \\ 
+  
+ &L4*  &  0.96 & 0.95 & 0.95 & 0.99 & 0.95 \\ 
+   
+&Eu &  0.93 & 0.88 & 0.96 & 0.97 & 0.90 \\ 
+ 
+&Naive L4&  
+  0.93 & 0.88 & 0.98 & 0.99 & 0.88 \\
+&Naive Eu &     0.84 & 0.71 & 0.93 & 0.97 & 0.74 \\ 
+  
+\end{tabular}
+
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%Country 3%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{table}[H]
+
+\centering
+\vfill
+\caption{Mean  accuracy \textbf{Country 3}, 1000 particles, \textbf{pacc =.03}}
+
+
+\begin{tabular}{crrrrrr}
+  \hline
+  
+{\color{blue}Median Accuracy} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}Abs Bias}& L4  &0.09 & 0.13 & 0.04 & 0.03 & 0.15 \\ 
+ 
+ &L4*  &  0.10 & 0.18 & 0.05 & 0.04 & 0.15 \\ 
+ 
+ 
+&Eu &    0.11 & 0.16 & 0.09 & 0.03 & 0.15 \\ 
+  
+ 
+&Naive L4&       
+  0.12 & 0.22 & 0.05 & 0.03 & 0.20 \\ 
+&Naive Eu &    0.22 & 0.35 & 0.19 & 0.07 & 0.28 \\ 
+ 
+  
+  \\ 
+   \hline
+   
+{\color{blue} ReAbs Bias } & L4  &0.81 & 0.72 & 0.07 & 1.58 & 0.86 \\ 
+ 
+&L4*  &  0.80 & 0.76 & 0.07 & 1.45 & 0.92 \\ 
+  
+&Eu &   
+ 0.43 & 0.48 & 0.17 & 0.54 & 0.53 \\ 
+  
+ 
+  
+&Naive L4&   
+  0.99 & 1.10 & 0.07 & 1.71 & 1.09 \\ 
+ 
+&Naive Eu &    1.33 & 1.61 & 0.43 & 1.97 & 1.31 \\ 
+ 
+   \\ 
+   \hline
+{\color{blue}Mean Accuracy} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}Bias} & L4  &0.09 & 0.13 & 0.05 & 0.04 & 0.16 \\ 
+ 
+   \hline
+&L4*  & 0.11 & 0.18 & 0.05 & 0.04 & 0.16 \\ 
+ 
+&Eu &   0.11 & 0.16 & 0.10 & 0.03 & 0.16 \\ 
+ 
+  
+&Naive L4&  
+     0.13 & 0.22 & 0.05 & 0.04 & 0.19 \\ 
+  
+&Naive Eu &  0.22 & 0.35 & 0.19 & 0.08 & 0.27 \\ 
+  
+   \hline
+   
+{\color{blue} Relative Bias } & L4  &0.95 & 0.73 & 0.07 & 1.94 & 1.05 \\ 
+  
+&L4*  &0.96 & 0.81 & 0.08 & 1.81 & 1.15 \\ 
+  
+  
+&Eu &  
+    0.50 & 0.54 & 0.18 & 0.62 & 0.66 \\ 
+  
+ 
+&Naive L4&  1.18 & 1.14 & 0.08 & 2.29 & 1.21 \\
+  
+  
+  
+&Naive Eu &    1.52 & 1.64 & 0.43 & 2.51 & 1.48 \\ 
+  
+\end{tabular}
+
+\end{table}
+
+
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{table}[H]
+\centering
+\caption{IQR and coverage of \textbf{Country 3}, 1000 particles, pacc =.01}
+
+\begin{tabular}{crrrrrr}
+  \hline
+{\color{blue}CI} & Distances & Ave & alpha & beta & delta & gamma \\ 
+  \hline
+{\color{blue}IQR Range} & L4  &0.18 & 0.24 & 0.09 & 0.09 & 0.31 \\ 
+ 
+   
+&L4*  & 0.21 & 0.34 & 0.09 & 0.08 & 0.32 \\ 
+  
+&Eu & 0.20 & 0.25 & 0.21 & 0.07 & 0.28 \\ 
+ 
+&Naive L4&      
+  0.21 & 0.32 & 0.13 & 0.11 & 0.29 \\ 
+&Naive Eu &     0.34 & 0.42 & 0.34 & 0.18 & 0.39 \\ 
+   \\ 
+%%%%%%%%%%%%%%%%%%
+    {\color{blue}95$\%$ Range} & L4  &0.47 & 0.66 & 0.24 & 0.25 & 0.72 \\ 
+   
+    &L4*  & 0.53 & 0.90 & 0.24 & 0.25 & 0.75 \\ 
+  
+&Eu &  0.49 & 0.64 & 0.49 & 0.18 & 0.64 \\ 
+  
+&Naive L4&     0.60 & 0.98 & 0.37 & 0.34 & 0.71 \\
+ 
+&Naive Eu &     0.81 & 1.15 & 0.76 & 0.48 & 0.85 \\ 
+ 
+\\   
+   \hline
+   
+{\color{blue} IQR CR } & L4  &0.61 & 0.53 & 0.60 & 0.74 & 0.58 \\ 
+  
+&L4*  &   0.58 & 0.57 & 0.55 & 0.62 & 0.59 \\ 
+  
+&Eu &     0.55 & 0.50 & 0.60 & 0.63 & 0.46 \\ 
+ 
+&Naive L4& 0.60 & 0.42 & 0.72 & 0.81 & 0.44 \\ 
+  
+ 
+&Naive Eu &  0.45 & 0.33 & 0.46 & 0.63 & 0.38 \\ 
+  
+ %%%%%%%%%%%%%%%%
+
+ {\color{blue} 95$\%$ CR }& L4  &0.96 & 0.95 & 0.98 & 0.97 & 0.96 \\ 
+  
+  &L4*  &0.96 & 0.96 & 0.96 & 0.97 & 0.96 \\ 
+  
+   
+&Eu &  0.94 & 0.86 & 0.97 & 0.99 & 0.92 \\ 
+ 
+  
+&Naive L4&    
+ 0.95 & 0.93 & 0.99 & 0.98 & 0.89 \\ 
+ 
+&Naive Eu &    0.89 & 0.78 & 0.93 & 0.98 & 0.88 \\ 
+  
+\end{tabular}
+
+\end{table}
+%%
+
+
+
+\end{document}

@@ -1,4 +1,4 @@
-#The code is created on Oct 23 to run on ABC for Traffic mode, 3 countries
+
 args <- commandArgs(trailingOnly = TRUE)
 k <- as.integer(args[1])
 prob1 <- as.integer(args[2])

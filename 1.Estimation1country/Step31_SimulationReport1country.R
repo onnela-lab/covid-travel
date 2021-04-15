@@ -1,4 +1,4 @@
-setwd("C:/Users/thl902/Desktop/CONETPublicationDec27/Simulation/Estimation1country")
+
 library(ggplot2)
 library(cowplot)
 particles = 1000

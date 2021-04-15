@@ -1,5 +1,4 @@
 
-## The code is used to submit on HPC to check compare coverage rate for different distances, where
 args <- commandArgs(trailingOnly = TRUE)
 k <- as.integer(args[1])
 prob1 <- as.integer(args[2])

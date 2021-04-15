@@ -25,8 +25,6 @@
 
 ##Row27-28 are the percentage of inbound and inbound adjusted 
 
-
-setwd("C:/Users/thl902/Desktop/Investigating/Policies/Old")
 library(xtable)
 
 
@@ -37,31 +35,9 @@ index2 = 2:3
 index3 =1
 ######
 numberpol = 8 
-myfunction = function(index){
-  matrix1 = matrix(0,28,numberpol)
-  t1= rep(0,length(index))
-  for(i in 1:length(index)){
-    countryconsider = index[i]
-    fname = paste('Zpoliciesbenchmarkcountryconsider_',countryconsider,".txt",sep="")
-    
-    if(file.exists(fname)){
-      data = as.matrix(read.table(fname,header=T))
-      ##reorderpoliciesforconsistentwithmaintext
-      #index = c(1,2,3,4,6,8,5,7)
-      #data= data[,index]
-      matrix1 = matrix1 +data
-      t1[i] = 1
-    }#end for checking file.exists
-  } #end loop for i
-  
-  matrix1 = matrix1/sum(t1)
-  return(matrix1)
-  
-}
-
 
 #################
-myfunctione = function(index){
+myfunction = function(index){
   matrix1 = matrix(0,28,numbersce)
   t1= rep(0,length(index))
   for(i in 1:length(index)){

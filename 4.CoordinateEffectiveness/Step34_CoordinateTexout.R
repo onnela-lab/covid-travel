@@ -1,12 +1,10 @@
 
-setwd("C:/Users/thl902/Desktop/CONETPublicationDec27/Simulation/4.CoordinateEffectiveness")
 library(xtable)
 policytime =14
 inflation = 10/100
 
 myfunction = function(countryconsider,scalefactor){
 
-#fname1 = paste('ZCoordinateeffectestimationcountryconsider_',countryconsider,"_durationpolicy_",policytime,"_inflation_",inflation,".txt",sep="")
 fname1 = paste('ZCoordinateeffectbenchmarkcountryconsider_',countryconsider,"_durationpolicy_",policytime,"_inflation_",inflation,".txt",sep="")
   
 data =  read.table(fname1,header=T)
@@ -23,8 +21,7 @@ return(data)
 myfunctione = function(countryconsider,scalefactor){
   
   fname1 = paste('ZCoordinateeffectestimationcountryconsider_',countryconsider,"_durationpolicy_",policytime,"_inflation_",inflation,".txt",sep="")
-  #fname1 = paste('ZCoordinateeffectbenchmarkcountryconsider_',countryconsider,"_durationpolicy_",policytime,"_inflation_",inflation,".txt",sep="")
-  
+
   data =  read.table(fname1,header=T)
   data = data*scalefactor
   data = as.matrix(data)

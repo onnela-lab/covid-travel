@@ -1,5 +1,5 @@
 # covid-travel
-##1. An overview of our folders:
+##1. An overview of our folder:
 
 Our GitHub folder here includes all the R codes and data for the paper "Policies for Easing COVID-19 Pandemic Travel Restrictions" with the intended purpose of the research reproducibility. This folder has 8 seperate Sections: Sections 1 to 5 are the R codes used in the paper, Section 6 include the formatted COVID data, and Section 7 is the CONETTravel R packake.
 

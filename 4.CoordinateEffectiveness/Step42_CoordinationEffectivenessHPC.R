@@ -1,4 +1,4 @@
-#The code is created on Jan 27 to estimate PoliciesEfectiveness to run on ABC for Traffic mode, 4 countries
+
 
 args <- commandArgs(trailingOnly = TRUE)
 iteration <- as.integer(args[1])

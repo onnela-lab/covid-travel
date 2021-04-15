@@ -5,7 +5,7 @@ inflation = 10/100
 
 myfunction = function(countryconsider,scalefactor){
 
-fname1 = paste('ZCoordinateeffectbenchmarkcountryconsider_',countryconsider,"_durationpolicy_",policytime,"_inflation_",inflation,".txt",sep="")
+fname1 = paste('ZCoordinateeffectestimationcountryconsider_',countryconsider,"_durationpolicy_",policytime,"_inflation_",inflation,".txt",sep="")
   
 data =  read.table(fname1,header=T)
 data = data*scalefactor

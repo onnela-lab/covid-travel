@@ -5,7 +5,7 @@ Our GitHub folder here includes all the R codes and data for the paper "Policies
 
 ##Some notes on the R codes 
 
-#1. Rcode structure: The R codes are included 5 separate sections, with sections 1 to 4 dedicate for the Simulation studies, Section 5 for the Real data analysis.
+#1. Rcode folders: The R codes are included in 5 separate sections, with sections 1 to 4 are Simulation studies (as the order in the Supplementary Materials of the paper) and Section 5 is the Real data analysis.
 
 Most parts of the R codes are in the format of High-Performance Cluster of Harvard University (FARS computing at https://www.rc.fas.harvard.edu/). Therefore some modifications may be needed if users want to run the codes in their own systems. 
 In the real data analysis section, due to the commercial reason of the flight data from OAG, we cannot make the data publicly available. However, you can plug in your own data to run the model. 

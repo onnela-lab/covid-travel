@@ -1,5 +1,3 @@
-#The code is used to check HPC OUTPUT FOR 3 COUNTRIES, CREATED OCT 19.
-setwd("C:/Users/thl902/Desktop/CONETPublicationDec27/Simulation/Estimation3countries")
 particles = 1000
 prob=.01
 
